@@ -14,6 +14,7 @@
 		043A303321BAE52F009571EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043A303121BAE52F009571EE /* LaunchScreen.storyboard */; };
 		043A303E21BAE530009571EE /* MoeBambaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A303D21BAE530009571EE /* MoeBambaTests.swift */; };
 		043A304921BAE530009571EE /* MoeBambaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A304821BAE530009571EE /* MoeBambaUITests.swift */; };
+		043A305721BAE801009571EE /* CameraSetup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A305621BAE801009571EE /* CameraSetup.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		043A304421BAE530009571EE /* MoeBambaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoeBambaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		043A304821BAE530009571EE /* MoeBambaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoeBambaUITests.swift; sourceTree = "<group>"; };
 		043A304A21BAE530009571EE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		043A305621BAE801009571EE /* CameraSetup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraSetup.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				043A302821BAE52C009571EE /* AppDelegate.swift */,
 				043A302A21BAE52C009571EE /* ViewController.swift */,
+				043A305621BAE801009571EE /* CameraSetup.swift */,
 				043A302C21BAE52C009571EE /* Main.storyboard */,
 				043A302F21BAE52F009571EE /* Assets.xcassets */,
 				043A303121BAE52F009571EE /* LaunchScreen.storyboard */,
@@ -256,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				043A305721BAE801009571EE /* CameraSetup.swift in Sources */,
 				043A302B21BAE52C009571EE /* ViewController.swift in Sources */,
 				043A302921BAE52C009571EE /* AppDelegate.swift in Sources */,
 			);
