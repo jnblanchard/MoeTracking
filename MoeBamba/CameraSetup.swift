@@ -38,9 +38,11 @@ extension ViewController {
       
       let tempLayer = AVCaptureVideoPreviewLayer(session: captureSession)
       tempLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
-      tempLayer.frame = view.bounds
-      view.layer.addSublayer(tempLayer)
-      for temp in view.subviews { view.bringSubviewToFront(temp) }
+      DispatchQueue.main.async {
+        tempLayer.frame = self.view.bounds
+        self.view.layer.addSublayer(tempLayer)
+        for temp in self.view.subviews { self.view.bringSubviewToFront(temp) }
+      }
       
       guard !captureSession.isRunning else { return }
       deviceQueue.async { self.captureSession.startRunning() }
