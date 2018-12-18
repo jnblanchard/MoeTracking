@@ -26,7 +26,13 @@ extension ViewController {
         captureSession.addOutput(captureOutput)
       }
       
-      captureSession.sessionPreset = .high
+      let settings = AVCapturePhotoSettings()
+      photoOutput.isHighResolutionCaptureEnabled = true
+      if captureSession.canAddOutput(photoOutput) {
+        captureSession.addOutput(photoOutput)
+      }
+      
+      captureSession.sessionPreset = .photo
       captureOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
       
       guard let tempInput = input else { return }

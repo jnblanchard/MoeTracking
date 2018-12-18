@@ -13,9 +13,11 @@
 	<key>CFBundleName</key>
 	<string>$(PRODUCT_NAME)</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Moe will attempt to track stuff</string>
+	<string>To magnify the things around you.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>To put magnified images in your gallery safely.</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
