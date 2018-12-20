@@ -26,10 +26,15 @@ extension ViewController {
         captureSession.addOutput(captureOutput)
       }
       
-      let settings = AVCapturePhotoSettings()
       photoOutput.isHighResolutionCaptureEnabled = true
       if captureSession.canAddOutput(photoOutput) {
         captureSession.addOutput(photoOutput)
+      }
+      
+      let settings = AVCapturePhotoSettings()
+      settings.isHighResolutionPhotoEnabled = true
+      photoOutput.setPreparedPhotoSettingsArray([settings]) { (completion, error) in
+        debugPrint(error)
       }
       
       captureSession.sessionPreset = .photo
@@ -42,11 +47,11 @@ extension ViewController {
       
       captureSession.commitConfiguration()
       
-      let tempLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-      tempLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+      previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
+      previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
       DispatchQueue.main.async {
-        tempLayer.frame = self.view.bounds
-        self.view.layer.addSublayer(tempLayer)
+        self.previewLayer?.frame = self.view.bounds
+        self.view.layer.addSublayer(self.previewLayer!)
         for temp in self.view.subviews { self.view.bringSubviewToFront(temp) }
       }
       

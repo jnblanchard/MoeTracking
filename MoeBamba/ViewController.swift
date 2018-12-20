@@ -30,8 +30,11 @@ class ViewController: UIViewController {
   }()
   
   var visionHandler: (VNRequest, Error?) -> Void = { request, error in
-    debugPrint(request.results)
+    guard let results = request.results?.first as? VNDetectedObjectObservation else { return }
+    debugPrint("following tracked object at: ", results.boundingBox)
   }
+  
+  let album = CustomPhotoAlbum.sharedInstance
   
   var semaphore = DispatchSemaphore(value: 1)
   var userImageLock = false
@@ -39,6 +42,8 @@ class ViewController: UIViewController {
   var rectOutline: CGRect?
   var sizeWidth = CGFloat(0)
   var sizeHeight = CGFloat(0)
+  
+  var previewLayer: AVCaptureVideoPreviewLayer?
   
   var trackingView: TrackingView? {
     for aView in view.subviews {
@@ -68,11 +73,11 @@ class ViewController: UIViewController {
   
   @IBAction func imageViewTapped(_ sender: Any) {
     userImageLock.toggle()
-    debugPrint(userImageLock)
     guard userImageLock else { return }
     func writeImg() {
       guard let img =  previewImageView.image else { return }
-      UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
+      //UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
+      album.save(image: img)
     }
     
     func takeImg() {
@@ -130,8 +135,8 @@ class ViewController: UIViewController {
 
 extension ViewController: AVCapturePhotoCaptureDelegate {
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
-    guard let img = photo.cgImageRepresentation()?.takeRetainedValue() else { return }
-    let ci = CIImage(cgImage: img)
+    guard let img = photo.cgImageRepresentation()?.takeUnretainedValue() else { return }
+    let ci = CIImage(cgImage: img).oriented(forExifOrientation: 6)
     guard let uiRect = rectOutline else { return }
     let xRatio = CGFloat(img.width) / sizeWidth
     let yRatio = CGFloat(img.height) / sizeHeight
@@ -139,6 +144,10 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
     let bigRect = CGRect(x: uiRect.origin.x*xRatio, y: uiRect.origin.y*yRatio, width: uiRect.width*xRatio, height: uiRect.height*yRatio)
     let crop = ci.cropped(to: bigRect)
     
+    guard let cgCrop = CIContext(options: nil).createCGImage(crop, from: crop.extent) else { return }
+    let cropUI = UIImage(cgImage: cgCrop)
+    album.save(image: cropUI)
+    previewImageView.image = cropUI
     debugPrint(img.height, img.width, crop.extent.width, crop.extent.height)
   }
 }
@@ -162,6 +171,30 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
        width2 = 100 height2 = 200
        
       */
+      var newY = rectOutline!.origin.y
+      var newX = rectOutline!.origin.x
+      accountY: if rectOutline!.midY < sizeHeight / 2 {
+        let calc = (sizeHeight / 2) - rectOutline!.midY
+        newY = (sizeHeight / 2 ) + calc - (rectOutline!.height / 2)
+        //difference below the axis is actually above the axis
+      } else {
+        guard rectOutline!.midY != sizeHeight / 2 else { break accountY }
+        let calc = rectOutline!.midY - (sizeHeight / 2)
+        newY = (sizeHeight / 2) - calc - (rectOutline!.height / 2)
+        //difference above the axis is actually below the axis
+      }
+      
+      
+      //toododooooo
+      accountX: if rectOutline!.midX < sizeWidth / 2 {
+        newX = rectOutline!.maxX
+      } else {
+        guard rectOutline!.midX != sizeWidth / 2 else { break accountX }
+        newX = rectOutline!.minX
+      }
+      
+      return CGRect(x: newX, y: newY, width: rectOutline!.width, height: rectOutline!.height).applying(CGAffineTransform(scaleX: xRatio, y: yRatio))
+      
       let rect1 = rectOutline!.applying(CGAffineTransform(scaleX: xRatio, y: yRatio))
       
       let rect = CGRect(x: rectOutline!.origin.x*xRatio, y:  (rectOutline!.origin.y*yRatio), width: rectOutline!.size.width*xRatio, height: rectOutline!.size.height*yRatio).applying(CGAffineTransform.init(scaleX: 1, y: -1))

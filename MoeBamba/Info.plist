@@ -16,6 +16,8 @@
 	<string>To magnify the things around you.</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>To put magnified images in a neat gallery.</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>To put magnified images in your gallery safely.</string>
 	<key>CFBundleShortVersionString</key>
