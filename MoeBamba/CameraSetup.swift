@@ -27,6 +27,7 @@ extension ViewController {
       }
       
       photoOutput.isHighResolutionCaptureEnabled = true
+      
       if captureSession.canAddOutput(photoOutput) {
         captureSession.addOutput(photoOutput)
       }
@@ -38,7 +39,6 @@ extension ViewController {
       }
       
       captureSession.sessionPreset = .photo
-      captureOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
       
       guard let tempInput = input else { return }
       if captureSession.canAddInput(tempInput) {
@@ -47,8 +47,11 @@ extension ViewController {
       
       captureSession.commitConfiguration()
       
+      captureOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
+      
       previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
       previewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
+      previewLayer?.connection?.videoOrientation = .portrait
       DispatchQueue.main.async {
         self.previewLayer?.frame = self.view.bounds
         self.view.layer.addSublayer(self.previewLayer!)

@@ -122,9 +122,15 @@ class ViewController: UIViewController {
     case .began:
       tracker.startingLocation = gr.location(in: view)
       reset()
-    case .changed, .ended:
+    case .changed:
       adjust()
+    case .ended:
       rectOutline = tracker.frame
+      try? device?.lockForConfiguration()
+      defer { device?.unlockForConfiguration() }
+      guard let devicePoint = previewLayer?.captureDevicePointConverted(fromLayerPoint: gr.location(in: gr.view)) else { return }
+      device?.focusPointOfInterest = devicePoint
+      device?.exposurePointOfInterest = devicePoint
     case .cancelled:
       reset()
     default:
@@ -136,13 +142,19 @@ class ViewController: UIViewController {
 extension ViewController: AVCapturePhotoCaptureDelegate {
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
     guard let img = photo.cgImageRepresentation()?.takeUnretainedValue() else { return }
-    let ci = CIImage(cgImage: img).oriented(forExifOrientation: 6)
+    let ci = CIImage(cgImage: img)
     guard let uiRect = rectOutline else { return }
+    guard let metaRect = previewLayer?.metadataOutputRectConverted(fromLayerRect: uiRect) else { return }
+    
+    let outputRect = output.outputRectConverted(fromMetadataOutputRect: metaRect)
+    
+    /*
     let xRatio = CGFloat(img.width) / sizeWidth
     let yRatio = CGFloat(img.height) / sizeHeight
     
     let bigRect = CGRect(x: uiRect.origin.x*xRatio, y: uiRect.origin.y*yRatio, width: uiRect.width*xRatio, height: uiRect.height*yRatio)
-    let crop = ci.cropped(to: bigRect)
+    */
+    let crop = ci.cropped(to: outputRect).oriented(forExifOrientation: 6)
     
     guard let cgCrop = CIContext(options: nil).createCGImage(crop, from: crop.extent) else { return }
     let cropUI = UIImage(cgImage: cgCrop)
@@ -156,14 +168,30 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
   func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
     semaphore.wait()
     defer { semaphore.signal() }
-    guard CMSampleBufferDataIsReady(sampleBuffer) else { return }
+    guard previewLayer != nil else { return }
     guard rectOutline != nil else { return }
+    guard CMSampleBufferDataIsReady(sampleBuffer) else { return }
     guard let buffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
-    let ciImg = CIImage(cvImageBuffer: buffer).oriented(forExifOrientation: 6)
+    let wrongOrientationImage = CIImage(cvImageBuffer: buffer)
+    var ciImg = wrongOrientationImage  //.oriented(forExifOrientation: 6)
     func adjustForCrop() -> CGRect {
+
+      guard let metaRect = previewLayer?.metadataOutputRectConverted(fromLayerRect: rectOutline!) else { return CGRect.zero }
+      
+
+//      debugPrint("yinverseMetaRect: ", yInverseMetaRect)
+      return output.outputRectConverted(fromMetadataOutputRect: metaRect)
+      
+//      return CGRect(x: metaRect.origin.x*ciImg.extent.width, y: metaRect.origin.y*ciImg.extent.height, width: metaRect.width*ciImg.extent.width, height: metaRect.height*ciImg.extent.height)
+      
       let xRatio = CGFloat(ciImg.extent.width / sizeWidth)
       let yRatio = CGFloat(ciImg.extent.height / sizeHeight)
-      
+      /*
+      let layerPositionRect = previewLayer?.metadataOutputRectConverted(fromLayerRect: rectOutline!)
+      guard var candidate = layerPositionRect?.applying(transformsPortrait).applying(CGAffineTransform(translationX: 0, y: -1439)) else { return  CGRect.zero }
+      let interpretedImageRect = CGRect(x: candidate.origin.x*sizeWidth, y: candidate.origin.y*sizeHeight, width: candidate.width*sizeWidth, height: candidate.height*sizeHeight)
+      return interpretedImageRect
+      */
       /*
        dxx = 5*3 (300 / 100) dxy = 50*2.5 (500/200)
        width1 = 300 height1 = 500
@@ -187,11 +215,26 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       
       //toododooooo
       accountX: if rectOutline!.midX < sizeWidth / 2 {
-        newX = rectOutline!.maxX
+        let calc = (sizeWidth / 2) - rectOutline!.midX
+        newX = rectOutline!.origin.x - 40
+        debugPrint("x size small")
       } else {
         guard rectOutline!.midX != sizeWidth / 2 else { break accountX }
-        newX = rectOutline!.minX
+        debugPrint("x size big")
+        let calc = rectOutline!.midX - (sizeWidth / 2)
+        newX = rectOutline!.origin.x + 40
+//        newX = (sizeWidth / 2) - calc - (rectOutline!.width / 2)
       }
+      
+      /*
+      guard let topLeft = previewLayer?.captureDevicePointConverted(fromLayerPoint: CGPoint(x: rectOutline!.minX, y: rectOutline!.minY)) else { return CGRect.zero }
+      
+      newX = rectOutline!.origin.x - (rectOutline!.width/8)
+      
+      let metadataRect = CGRect(x: topLeft.x*sizeWidth, y: topLeft.y*sizeHeight, width: rectOutline!.width/sizeWidth, height: rectOutline!.height/sizeHeight)
+      let interpreted  = captureOutput.outputRectConverted(fromMetadataOutputRect: metadataRect)
+      return interpreted
+      */
       
       return CGRect(x: newX, y: newY, width: rectOutline!.width, height: rectOutline!.height).applying(CGAffineTransform(scaleX: xRatio, y: yRatio))
       
@@ -201,13 +244,17 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       return rect1
     }
     //cropped to image -- need to check landscape
-    let highlightedArea = adjustForCrop()
+    let highlightedArea = adjustForCrop().applying(CGAffineTransform(translationX: 0, y: -ciImg.extent.height)).applying(CGAffineTransform(scaleX: 1, y: -1))
+//    let yInverseMetaRect = metaRect.applying(CGAffineTransform(translationX: 0, y: -1)).applying(CGAffineTransform(scaleX: 1, y: 1))
+    debugPrint("outputRect: ", highlightedArea)
     let img = ciImg.cropped(to: highlightedArea)
     DispatchQueue.main.async {
       guard !self.userImageLock else { return }
       guard let cgimg = CIContext(options: nil).createCGImage(img, from: img.extent) else { return }
       self.previewImageView.image = UIImage(cgImage: cgimg)
+    
     }
+    /*
     let handler = VNImageRequestHandler(cvPixelBuffer: buffer, options: [:])
     let request = VNTrackObjectRequest(detectedObjectObservation: VNDetectedObjectObservation(boundingBox: highlightedArea), completionHandler: visionHandler)
     do {
@@ -215,6 +262,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     } catch {
       debugPrint(error)
     }
+    */
   }
   
   func captureOutput(_ output: AVCaptureOutput, didDrop sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
