@@ -27,13 +27,42 @@
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="zsW-sr-2NG" appends="YES" id="BNN-zM-LNF"/>
+                                    <outletCollection property="gestureRecognizers" destination="NUZ-S1-sAu" appends="YES" id="tqi-i8-5fa"/>
                                 </connections>
                             </imageView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbR-42-V3G">
+                                <rect key="frame" x="315" y="35" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.64027718321917815" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="9vB-mL-5oj"/>
+                                    <constraint firstAttribute="width" constant="40" id="MmN-yk-kS3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Flip">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="20"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="2"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="flipButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jOE-sV-sRA"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="cbR-42-V3G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="cS6-vc-zVW"/>
                             <constraint firstItem="7hk-vi-gmF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="gP3-ER-jiO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7hk-vi-gmF" secondAttribute="bottom" constant="15" id="nep-94-PiB"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cbR-42-V3G" secondAttribute="trailing" constant="20" id="oWE-mf-MwP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
@@ -47,6 +76,11 @@
                         <action selector="imageViewTapped:" destination="BYZ-38-t0r" id="Dbv-Nk-lo6"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="NUZ-S1-sAu">
+                    <connections>
+                        <action selector="imageViewPanned:" destination="BYZ-38-t0r" id="gfN-p1-D12"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="99.400299850074973"/>
         </scene>

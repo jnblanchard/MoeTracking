@@ -70,15 +70,12 @@ extension ViewController {
       createOutput()
       break
     case .denied:
-      //ask for settings auth
+      //ask for settings auth TODO
       break
     case .notDetermined:
       AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
-        if response {
-          createOutput()
-        } else {
-//          debugPrint("rejection")
-        }
+        guard response else { return }
+        createOutput()
       }
     case .restricted:
       // Continue with restriction
@@ -87,7 +84,7 @@ extension ViewController {
   }
   
   func createInput() -> AVCaptureDeviceInput? {
-    guard device != nil else { return nil }
+    var device: AVCaptureDevice? = isFront ? frontDevice : backDevice
     var bestFormat: AVCaptureDevice.Format?
     var bestFrameRateRange: AVFrameRateRange?
     for format in device!.formats {
