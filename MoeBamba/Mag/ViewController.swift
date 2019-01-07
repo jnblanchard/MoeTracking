@@ -9,8 +9,11 @@
 import UIKit
 import AVFoundation
 import Vision
+import Photos
+
 
 class ViewController: UIViewController {
+  @IBOutlet weak var previousUserImageView: UIImageView!
   @IBOutlet weak var previewImageView: UIImageView!
   var imageTouchOffset: CGPoint?
   var isFront = false 
@@ -28,9 +31,7 @@ class ViewController: UIViewController {
   
   lazy var backDevice: AVCaptureDevice? = { return AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices.first }()
   lazy var frontDevice: AVCaptureDevice? = { return AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .front).devices.first }()
-  lazy var input: AVCaptureInput? = {
-    return createInput()
-  }()
+   var zoomFactor: CGFloat = 1.0
   
   var visionHandler: (VNRequest, Error?) -> Void = { request, error in
     guard let results = request.results?.first as? VNDetectedObjectObservation else { return }
@@ -58,6 +59,7 @@ class ViewController: UIViewController {
     let temp = TrackingView(frame: CGRect.zero)
     temp.layer.borderColor = UIColor.green.cgColor
     temp.layer.borderWidth = 3.0
+    
     view.addSubview(temp)
     return temp
   }
@@ -68,28 +70,85 @@ class ViewController: UIViewController {
     sizeHeight = view.frame.height
     let pangr = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gr:)))
     view.addGestureRecognizer(pangr)
+    guard let lastAsset = PHAsset.fetchAssets(in: album.assetCollection, options: nil).lastObject else { return }
+    fetchImage(asset: lastAsset) { (image) in
+      self.previousUserImageView.image = image
+    }
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     start()
   }
+  @IBAction func previousImageTapped(_ sender: UITapGestureRecognizer) {
+    UIApplication.shared.open(URL(string:"photos-redirect://")!)
+  }
+  
+  @IBAction func focusTap(_ tap: UITapGestureRecognizer) {
+    let focusPoint =  tap.location(in: view)
+    guard let captureDeviceLocation = previewLayer?.captureDevicePointConverted(fromLayerPoint: focusPoint) else { return }
+    guard let device = isFront ? frontDevice : backDevice else { return }
+    guard device.isFocusPointOfInterestSupported, device.isExposurePointOfInterestSupported else { return }
+    
+    do {
+      try device.lockForConfiguration()
+      
+      device.focusPointOfInterest = captureDeviceLocation
+      device.exposurePointOfInterest = captureDeviceLocation
+      
+      device.focusMode = .continuousAutoFocus
+      device.exposureMode = .continuousAutoExposure
+      
+      device.unlockForConfiguration()
+    } catch {
+      print(error)
+    }
+  }
+  
+  
+  @IBAction func pinchToZoomObserved(_ pinch: UIPinchGestureRecognizer) {
+    guard let device = isFront ? frontDevice : backDevice else { return }
+    func minMaxZoom(_ factor: CGFloat) -> CGFloat { return min(max(factor, 1.0), device.activeFormat.videoMaxZoomFactor) }
+    
+    func update(scale factor: CGFloat) {
+      do {
+        try device.lockForConfiguration()
+        defer { device.unlockForConfiguration() }
+        device.videoZoomFactor = factor
+      } catch {
+        debugPrint(error)
+      }
+    }
+    
+    let newScaleFactor = minMaxZoom(pinch.scale * zoomFactor)
+    
+    switch pinch.state {
+    case .began: fallthrough
+    case .changed: update(scale: newScaleFactor)
+    case .ended:
+      zoomFactor = minMaxZoom(newScaleFactor)
+      update(scale: zoomFactor)
+    default: break
+    }
+  }
   
   @IBAction func flipButtonPressed(_ sender: UIButton) {
     rectOutline = nil
     trackingView?.removeFromSuperview()
     previewImageView.image = nil
-    captureSession.beginConfiguration()
     isFront.toggle()
+    captureSession.beginConfiguration()
     if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
       for input in inputs {
         captureSession.removeInput(input)
       }
     }
-    guard let tempInput = input else { return }
+    guard let tempInput = createInput() else { return }
     if captureSession.canAddInput(tempInput) {
       captureSession.addInput(tempInput)
     }
+    
+    captureOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
     
     captureSession.commitConfiguration()
   }
@@ -180,7 +239,7 @@ class ViewController: UIViewController {
     func reset() {
       rectOutline = nil
       tracker.frame = CGRect.zero
-      view.bringSubviewToFront(tracker)
+      //view.bringSubviewToFront(tracker)
       view.layoutIfNeeded()
     }
     switch gr.state {
@@ -191,7 +250,7 @@ class ViewController: UIViewController {
       adjust()
     case .ended:
       rectOutline = tracker.frame
-      
+      view.insertSubview(tracker, at: 1)
       /*
       try? device?.lockForConfiguration()
       defer { device?.unlockForConfiguration() }

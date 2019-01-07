@@ -40,7 +40,7 @@ extension ViewController {
       
       captureSession.sessionPreset = .photo
       
-      guard let tempInput = input else { return }
+      guard let tempInput = createInput() else { return }
       if captureSession.canAddInput(tempInput) {
         captureSession.addInput(tempInput)
       }

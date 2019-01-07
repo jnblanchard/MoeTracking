@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="7hk-vi-gmF">
-                                <rect key="frame" x="15" y="312" width="240" height="340"/>
+                                <rect key="frame" x="87.5" y="452" width="200" height="200"/>
                                 <gestureRecognizers/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="240" id="8A7-T5-CHV"/>
-                                    <constraint firstAttribute="height" constant="340" id="giB-AN-l9V"/>
+                                    <constraint firstAttribute="height" constant="200" id="MPZ-lt-UIe"/>
+                                    <constraint firstAttribute="width" constant="200" id="hC0-tn-enw"/>
                                 </constraints>
                                 <connections>
                                     <outletCollection property="gestureRecognizers" destination="zsW-sr-2NG" appends="YES" id="BNN-zM-LNF"/>
@@ -49,25 +49,72 @@
                                         <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </userDefinedRuntimeAttribute>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
-                                        <integer key="value" value="2"/>
+                                        <integer key="value" value="3"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="flipButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jOE-sV-sRA"/>
                                 </connections>
                             </button>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TEd-Qv-wxY">
+                                <rect key="frame" x="20" y="35" width="40" height="40"/>
+                                <gestureRecognizers/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="S78-sS-Cn4" appends="YES" id="rfG-ZT-6gr"/>
+                                </connections>
+                            </imageView>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhM-02-6eJ">
+                                <rect key="frame" x="160" y="27.5" width="55" height="55"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.64027718320000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="Cyg-57-Lzj"/>
+                                    <constraint firstAttribute="width" constant="55" id="oJU-z3-Q6k"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                <state key="normal" title="Pro?">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="27"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="TEd-Qv-wxY" firstAttribute="width" secondItem="cbR-42-V3G" secondAttribute="width" id="4Ek-Km-VUr"/>
+                            <constraint firstItem="FhM-02-6eJ" firstAttribute="centerY" secondItem="cbR-42-V3G" secondAttribute="centerY" id="B3h-Ta-Ahr"/>
+                            <constraint firstItem="7hk-vi-gmF" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="RbQ-wa-FeG"/>
+                            <constraint firstItem="TEd-Qv-wxY" firstAttribute="top" secondItem="cbR-42-V3G" secondAttribute="top" id="aWC-ga-ncP"/>
+                            <constraint firstItem="FhM-02-6eJ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="b2K-8c-HV5"/>
                             <constraint firstItem="cbR-42-V3G" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="15" id="cS6-vc-zVW"/>
-                            <constraint firstItem="7hk-vi-gmF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="15" id="gP3-ER-jiO"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7hk-vi-gmF" secondAttribute="bottom" constant="15" id="nep-94-PiB"/>
+                            <constraint firstItem="TEd-Qv-wxY" firstAttribute="bottom" secondItem="cbR-42-V3G" secondAttribute="bottom" id="feJ-k2-XpI"/>
+                            <constraint firstItem="TEd-Qv-wxY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="jzr-9I-SXm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7hk-vi-gmF" secondAttribute="bottom" constant="15" id="lk4-f7-4qc"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cbR-42-V3G" secondAttribute="trailing" constant="20" id="oWE-mf-MwP"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="sOn-Yq-VLg" appends="YES" id="dfc-mD-dNl"/>
+                            <outletCollection property="gestureRecognizers" destination="fsZ-xK-u6z" appends="YES" id="Sk4-76-Evz"/>
+                        </connections>
                     </view>
                     <connections>
                         <outlet property="previewImageView" destination="7hk-vi-gmF" id="edF-0u-Sxj"/>
+                        <outlet property="previousUserImageView" destination="TEd-Qv-wxY" id="F7g-AN-OoS"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -81,6 +128,21 @@
                         <action selector="imageViewPanned:" destination="BYZ-38-t0r" id="gfN-p1-D12"/>
                     </connections>
                 </panGestureRecognizer>
+                <pinchGestureRecognizer id="sOn-Yq-VLg">
+                    <connections>
+                        <action selector="pinchToZoomObserved:" destination="BYZ-38-t0r" id="U1m-Be-fWk"/>
+                    </connections>
+                </pinchGestureRecognizer>
+                <tapGestureRecognizer id="S78-sS-Cn4">
+                    <connections>
+                        <action selector="previousImageTapped:" destination="BYZ-38-t0r" id="n7V-9z-Lz2"/>
+                    </connections>
+                </tapGestureRecognizer>
+                <tapGestureRecognizer id="fsZ-xK-u6z">
+                    <connections>
+                        <action selector="focusTap:" destination="BYZ-38-t0r" id="qur-9j-sHT"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.80000000000001" y="99.400299850074973"/>
         </scene>

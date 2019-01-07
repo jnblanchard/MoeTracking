@@ -9,6 +9,17 @@
 import Foundation
 import Photos
 
+extension UIViewController {
+  func fetchImage(asset: PHAsset, completion: @escaping  (UIImage) -> ()) {
+    let options = PHImageRequestOptions()
+    options.version = .original
+    PHImageManager.default().requestImageData(for: asset, options: options) {
+      data, uti, orientation, info in
+      guard let data = data, let image = UIImage(data: data) else { return }
+      completion(image)
+    }
+  }
+}
 
 class CustomPhotoAlbum: NSObject {
   static let albumName = "Magnified Images"

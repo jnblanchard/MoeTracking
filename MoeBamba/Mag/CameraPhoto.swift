@@ -9,6 +9,7 @@
 import Foundation
 import AVFoundation
 import UIKit
+import Photos
 
 extension ViewController: AVCapturePhotoCaptureDelegate {
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
