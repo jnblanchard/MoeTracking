@@ -22,6 +22,7 @@ extension ViewController: AVCapturePhotoCaptureDelegate {
     guard let cgCrop = CIContext(options: nil).createCGImage(crop, from: crop.extent) else { return }
     let cropUI = UIImage(cgImage: cgCrop)
     album.save(image: cropUI)
+    previousUserImageView.image = cropUI
     previewImageView.image = cropUI
   }
 }

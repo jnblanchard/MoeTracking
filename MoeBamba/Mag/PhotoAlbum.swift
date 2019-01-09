@@ -50,12 +50,14 @@ class CustomPhotoAlbum: NSObject {
   
   func requestAuthorizationHandler(status: PHAuthorizationStatus) {
     if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
-      // ideally this ensures the creation of the photo album even if authorization wasn't prompted till after init was done
-      print("trying again to create the album")
       self.createAlbum()
     } else {
-      print("should really prompt the user to let them know it's failed")
     }
+  }
+  
+  func count() -> Int {
+    guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else { return 0 }
+    return PHAsset.fetchAssets(in: assetCollection, options: nil).count
   }
   
   func createAlbum() {
@@ -64,8 +66,6 @@ class CustomPhotoAlbum: NSObject {
     }) { success, error in
       if success {
         self.assetCollection = self.fetchAssetCollectionForAlbum()
-      } else {
-        print("error \(error)")
       }
     }
   }
@@ -79,6 +79,16 @@ class CustomPhotoAlbum: NSObject {
       return collection.firstObject
     }
     return nil
+  }
+  
+  func removeEldest(completion: ((Bool) -> ())? = nil) {
+    guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else { return }
+    guard let first = PHAsset.fetchAssets(in: assetCollection, options: nil).firstObject else { return }
+    PHPhotoLibrary.shared().performChanges({
+      PHAssetChangeRequest.deleteAssets([first] as NSFastEnumeration)
+    }) { (complete, error) in
+      completion?(complete)
+    }
   }
   
   func save(image: UIImage) {

@@ -10,13 +10,17 @@ import UIKit
 import AVFoundation
 import Vision
 import Photos
+import StoreKit
 
 
 class ViewController: UIViewController {
+  @IBOutlet weak var flipButton: UIButton!
+  @IBOutlet weak var topProButton: UIButton!
   @IBOutlet weak var previousUserImageView: UIImageView!
   @IBOutlet weak var previewImageView: UIImageView!
   var imageTouchOffset: CGPoint?
-  var isFront = false 
+  var isFront = false
+  var writeOverTen = false
   
   override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
   override var shouldAutorotate: Bool { return false }
@@ -39,6 +43,7 @@ class ViewController: UIViewController {
   }
   
   let album = CustomPhotoAlbum.sharedInstance
+  let subscriptionManager = SubscriptionManager.shared
   
   var semaphore = DispatchSemaphore(value: 1)
   var userImageLock = false
@@ -70,16 +75,33 @@ class ViewController: UIViewController {
     sizeHeight = view.frame.height
     let pangr = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gr:)))
     view.addGestureRecognizer(pangr)
-    guard let lastAsset = PHAsset.fetchAssets(in: album.assetCollection, options: nil).lastObject else { return }
-    fetchImage(asset: lastAsset) { (image) in
-      self.previousUserImageView.image = image
-    }
+    SKPaymentQueue.default().add(self)
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    topProButton.layer.cornerRadius = topProButton.frame.height/2
+    previousUserImageView.layer.cornerRadius = previousUserImageView.frame.height/2
+    flipButton.layer.cornerRadius = flipButton.frame.height/2
+    flipButton.layer.borderColor = UIColor.white.cgColor
+    flipButton.layer.borderWidth = 2.0
+    previousUserImageView.layer.borderColor = UIColor.white.cgColor
+    previousUserImageView.layer.borderWidth = 2.0
+    topProButton.layer.borderColor = UIColor.white.cgColor
+    topProButton.layer.borderWidth = 2.0
+    if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized  {
+      guard let lastAsset = PHAsset.fetchAssets(in: album.assetCollection, options: nil).lastObject else { return }
+      fetchImage(asset: lastAsset) { (image) in
+        self.previousUserImageView.image = image
+      }
+    }
     start()
+    let launches = UserDefaults.standard.integer(forKey: "launches")
+    guard launches > 1 else { return }
+    guard launches % 10 == 0 else { return }
+    SKStoreReviewController.requestReview()
   }
+  
   @IBAction func previousImageTapped(_ sender: UITapGestureRecognizer) {
     UIApplication.shared.open(URL(string:"photos-redirect://")!)
   }
@@ -176,7 +198,6 @@ class ViewController: UIViewController {
     switch sender.state {
     case .began:
       imageTouchOffset = sender.location(in: previewImageView)
-      debugPrint(imageTouchOffset!.x, imageTouchOffset!.y)
       previewImageView.layer.shadowColor = UIColor.black.cgColor
       previewImageView.layer.shadowOffset = CGSize(width: 0, height: 0)
       previewImageView.layer.shadowOpacity = 0.85
@@ -198,9 +219,40 @@ class ViewController: UIViewController {
   @IBAction func imageViewTapped(_ sender: Any) {
     userImageLock.toggle()
     guard userImageLock else { return }
+    
+    let albumCount = PHAsset.fetchAssets(in: album.assetCollection, options: nil).count
+    
+    guard albumCount < 300 || writeOverTen else {
+      album.removeEldest()
+      return
+    }
+    //SKPaymentQueue.default().restoreCompletedTransactions()
+    
+    
+    let animateImageView = UIImageView(frame: previewImageView.frame)
+    animateImageView.image = previewImageView.image
+    animateImageView.alpha = 0.6
+    animateImageView.contentMode = UIView.ContentMode.scaleAspectFit
+    animateImageView.layer.cornerRadius = previewImageView.frame.height/2
+    animateImageView.clipsToBounds = true
+    animateImageView.layer.borderColor = UIColor.white.cgColor
+    animateImageView.layer.borderWidth = 2.0
+    view.addSubview(animateImageView)
+    view.bringSubviewToFront(animateImageView)
+    
+    UIView.animate(withDuration: 0.65, delay: 0, options: .curveEaseIn, animations: {
+      animateImageView.layer.cornerRadius = self.previousUserImageView.frame.height/2
+      animateImageView.frame = self.previousUserImageView.frame
+    }) { (completed) in
+      guard completed else { return }
+      self.previousUserImageView.image = animateImageView.image
+      animateImageView.removeFromSuperview()
+    }
+    
     func writeImg() {
       guard let img =  previewImageView.image else { return }
       //UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
+      previewImageView.image = img
       album.save(image: img)
     }
     
@@ -209,6 +261,7 @@ class ViewController: UIViewController {
       settings.isHighResolutionPhotoEnabled = true
       photoOutput.capturePhoto(with: settings, delegate: self)
     }
+
     
     takeImg()
   }
@@ -240,12 +293,17 @@ class ViewController: UIViewController {
       rectOutline = nil
       tracker.frame = CGRect.zero
       //view.bringSubviewToFront(tracker)
-      view.layoutIfNeeded()
+      UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseInOut, animations: {
+        self.previewImageView.layoutIfNeeded()
+      }) { (completed) in
+        guard completed else { return }
+      }
+      //view.layoutIfNeeded()
     }
     switch gr.state {
     case .began:
-      tracker.startingLocation = gr.location(in: view)
       reset()
+      tracker.startingLocation = gr.location(in: view)
     case .changed:
       adjust()
     case .ended:
@@ -267,6 +325,12 @@ class ViewController: UIViewController {
     default:
       break
     }
+  }
+  
+  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    guard let proOfferVC = segue.destination as? ProOfferViewController else { return }
+    proOfferVC.product = subscriptionManager.products.last
+    proOfferVC.album = album
   }
 }
 

@@ -13,6 +13,7 @@ import UIKit
 extension ViewController {
   func start() {
     func createOutput() {
+      guard !captureSession.isRunning else { return }
       captureSession.beginConfiguration()
       if let inputs = captureSession.inputs as? [AVCaptureDeviceInput] {
         for input in inputs {
@@ -34,10 +35,7 @@ extension ViewController {
       
       let settings = AVCapturePhotoSettings()
       settings.isHighResolutionPhotoEnabled = true
-      photoOutput.setPreparedPhotoSettingsArray([settings]) { (completion, error) in
-        debugPrint(error)
-      }
-      
+      photoOutput.setPreparedPhotoSettingsArray([settings], completionHandler: nil)
       captureSession.sessionPreset = .photo
       
       guard let tempInput = createInput() else { return }
