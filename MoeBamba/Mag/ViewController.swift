@@ -22,6 +22,8 @@ class ViewController: UIViewController {
   var isFront = false
   var writeOverTen = false
   
+  var testLayovers = true
+  
   override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
   override var shouldAutorotate: Bool { return false }
   override var prefersStatusBarHidden: Bool { return true }
@@ -49,21 +51,9 @@ class ViewController: UIViewController {
   var userImageLock = false {
     didSet {
       if userImageLock {
-        let coverView = UILabel(frame: previewImageView.frame)
-        coverView.text = "Tap to unlock."
-        coverView.numberOfLines = 2
-        coverView.textColor = UIColor.white
-        coverView.textAlignment = .center
-        coverView.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
-        coverView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
-        coverView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(coverView)
-        coverView.leadingAnchor.constraint(equalTo: previewImageView.leadingAnchor).isActive = true
-        coverView.topAnchor.constraint(equalTo: previewImageView.topAnchor).isActive = true
-        coverView.trailingAnchor.constraint(equalTo: previewImageView.trailingAnchor).isActive = true
-        coverView.bottomAnchor.constraint(equalTo: previewImageView.bottomAnchor).isActive = true
+        let _ = createPreviewCoverView(with: "Tap to unlock.", defaultSize: 110)
       } else {
-        guard let coverView = view.subviews.first(where: { (aView) -> Bool in
+        guard let coverView = previewImageView.subviews.first(where: { (aView) -> Bool in
           guard let temp = aView as? UILabel else { return false }
           return temp.text == "Tap to unlock."
         }) else { return }
@@ -127,10 +117,10 @@ class ViewController: UIViewController {
     }
     start()
     let launches = UserDefaults.standard.integer(forKey: "launches")
-    guard launches > 1 else {
-      guard launches == 1 else { return }
+    guard launches > 1 && !testLayovers else {
+      guard launches == 1 || testLayovers else { return }
       //show layovers
-      
+      setLayovers()
       return
     }
     guard launches % 25 == 0 else { return }
@@ -253,6 +243,7 @@ class ViewController: UIViewController {
   }
   
   @IBAction func imageViewTapped(_ sender: Any) {
+    removeCaptureLayover()
     userImageLock.toggle()
     guard userImageLock else { return }
     
