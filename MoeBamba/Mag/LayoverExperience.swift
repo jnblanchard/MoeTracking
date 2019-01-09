@@ -22,6 +22,8 @@ extension ViewController {
     coverView.translatesAutoresizingMaskIntoConstraints = false
     coverView.clipsToBounds = true
     coverView.layer.cornerRadius = defaultSize/2
+    coverView.layer.borderColor = UIColor.white.cgColor
+    coverView.layer.borderWidth = 2.0
     previewImageView.addSubview(coverView)
     coverView.centerXAnchor.constraint(equalTo: previewImageView.centerXAnchor).isActive = true
     coverView.centerYAnchor.constraint(equalTo: previewImageView.centerYAnchor).isActive = true

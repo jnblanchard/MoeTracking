@@ -89,6 +89,15 @@ class ViewController: UIViewController {
     let pangr = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gr:)))
     view.addGestureRecognizer(pangr)
     SKPaymentQueue.default().add(self)
+    let launches = UserDefaults.standard.integer(forKey: "launches")
+    guard launches > 1 && !testLayovers else {
+      guard launches == 1 || testLayovers else { return }
+      //show layovers
+      setLayovers()
+      return
+    }
+    guard launches % 25 == 0 else { return }
+    SKStoreReviewController.requestReview()
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -116,15 +125,6 @@ class ViewController: UIViewController {
       }
     }
     start()
-    let launches = UserDefaults.standard.integer(forKey: "launches")
-    guard launches > 1 && !testLayovers else {
-      guard launches == 1 || testLayovers else { return }
-      //show layovers
-      setLayovers()
-      return
-    }
-    guard launches % 25 == 0 else { return }
-    SKStoreReviewController.requestReview()
   }
   
   @IBAction func previousImageTapped(_ sender: UITapGestureRecognizer) {

@@ -12,6 +12,9 @@ import StoreKit
 class ProOfferViewController: UIViewController {
   @IBOutlet weak var currentCapacityLabel: UILabel!
   
+  @IBOutlet weak var proButton: UIButton!
+  
+  
   var product: SKProduct?
   var album: CustomPhotoAlbum?
   
@@ -22,6 +25,10 @@ class ProOfferViewController: UIViewController {
   override func viewWillAppear(_ animated: Bool) {
     super.viewWillAppear(animated)
     currentCapacityLabel.text = "\(album?.count() ?? 0) / 300"
+    proButton.layer.masksToBounds = false
+    proButton.layer.shadowColor = UIColor.black.cgColor
+    proButton.layer.shadowOffset = CGSize(width: 0, height: 0)
+    proButton.layer.shadowOpacity = 0.55
   }
   
   @IBAction func xButtonTapped(_ sender: Any) {
