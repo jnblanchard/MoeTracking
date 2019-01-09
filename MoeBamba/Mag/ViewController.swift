@@ -89,6 +89,8 @@ class ViewController: UIViewController {
     previousUserImageView.layer.borderWidth = 2.0
     topProButton.layer.borderColor = UIColor.white.cgColor
     topProButton.layer.borderWidth = 2.0
+    trackingView?.frame = CGRect(x: topProButton.center.x - 110, y: view.center.y - 190, width: 220, height: 220)
+    rectOutline = trackingView?.frame
     if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized  {
       guard let lastAsset = PHAsset.fetchAssets(in: album.assetCollection, options: nil).lastObject else { return }
       fetchImage(asset: lastAsset) { (image) in
@@ -173,6 +175,9 @@ class ViewController: UIViewController {
     captureOutput.connection(with: AVMediaType.video)?.videoOrientation = .portrait
     
     captureSession.commitConfiguration()
+    
+    trackingView?.frame = CGRect(x: topProButton.center.x - 110, y: view.center.y - 190, width: 220, height: 220)
+    rectOutline = trackingView?.frame
   }
   
   @IBAction func imageViewPanned(_ sender: UIPanGestureRecognizer) {

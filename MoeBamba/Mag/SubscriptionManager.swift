@@ -43,6 +43,6 @@ extension ViewController: SKPaymentTransactionObserver {
     default:
       break
     }
-    topProButton.isHidden = writeOverTen
+    //topProButton.isHidden = writeOverTen
   }
 }

@@ -24,7 +24,6 @@
 		044B58CD21C7327500B0FEB5 /* CommonTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B58CC21C7327500B0FEB5 /* CommonTypes.swift */; };
 		04F7FA3C21C825F7002E5533 /* RectangleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */; };
 		04F7FA3E21C87A7F002E5533 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */; };
-		04F7FA4021C96505002E5533 /* FunFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3F21C96505002E5533 /* FunFile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,7 +67,6 @@
 		044B58CC21C7327500B0FEB5 /* CommonTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTypes.swift; sourceTree = "<group>"; };
 		04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleExtensions.swift; sourceTree = "<group>"; };
 		04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
-		04F7FA3F21C96505002E5533 /* FunFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FunFile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,7 +97,6 @@
 		043A301C21BAE52C009571EE = {
 			isa = PBXGroup;
 			children = (
-				04F7FA3F21C96505002E5533 /* FunFile.swift */,
 				043A302721BAE52C009571EE /* MoeBamba */,
 				043A303C21BAE530009571EE /* MoeBambaTests */,
 				043A304721BAE530009571EE /* MoeBambaUITests */,
@@ -318,7 +315,6 @@
 				0444C79021E5677700FFD260 /* ProOfferViewController.swift in Sources */,
 				043A305721BAE801009571EE /* CameraSetup.swift in Sources */,
 				0444C78521E3C68B00FFD260 /* CameraPhoto.swift in Sources */,
-				04F7FA4021C96505002E5533 /* FunFile.swift in Sources */,
 				04F7FA3C21C825F7002E5533 /* RectangleExtensions.swift in Sources */,
 				044B58CD21C7327500B0FEB5 /* CommonTypes.swift in Sources */,
 				04F7FA3E21C87A7F002E5533 /* PhotoAlbum.swift in Sources */,
