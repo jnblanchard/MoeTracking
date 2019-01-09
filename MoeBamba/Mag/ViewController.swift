@@ -46,7 +46,31 @@ class ViewController: UIViewController {
   let subscriptionManager = SubscriptionManager.shared
   
   var semaphore = DispatchSemaphore(value: 1)
-  var userImageLock = false
+  var userImageLock = false {
+    didSet {
+      if userImageLock {
+        let coverView = UILabel(frame: previewImageView.frame)
+        coverView.text = "Tap to unlock."
+        coverView.numberOfLines = 2
+        coverView.textColor = UIColor.white
+        coverView.textAlignment = .center
+        coverView.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
+        coverView.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
+        coverView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(coverView)
+        coverView.leadingAnchor.constraint(equalTo: previewImageView.leadingAnchor).isActive = true
+        coverView.topAnchor.constraint(equalTo: previewImageView.topAnchor).isActive = true
+        coverView.trailingAnchor.constraint(equalTo: previewImageView.trailingAnchor).isActive = true
+        coverView.bottomAnchor.constraint(equalTo: previewImageView.bottomAnchor).isActive = true
+      } else {
+        guard let coverView = view.subviews.first(where: { (aView) -> Bool in
+          guard let temp = aView as? UILabel else { return false }
+          return temp.text == "Tap to unlock."
+        }) else { return }
+        coverView.removeFromSuperview()
+      }
+    }
+  }
   
   var rectOutline: CGRect?
   var sizeWidth = CGFloat(0)
@@ -62,9 +86,8 @@ class ViewController: UIViewController {
       }
     }
     let temp = TrackingView(frame: CGRect.zero)
-    temp.layer.borderColor = UIColor.green.cgColor
+    temp.layer.borderColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.6).cgColor
     temp.layer.borderWidth = 3.0
-    
     view.addSubview(temp)
     return temp
   }
@@ -89,6 +112,11 @@ class ViewController: UIViewController {
     previousUserImageView.layer.borderWidth = 2.0
     topProButton.layer.borderColor = UIColor.white.cgColor
     topProButton.layer.borderWidth = 2.0
+    previewImageView.layer.shadowColor = UIColor.black.cgColor
+    previewImageView.layer.shadowOffset = CGSize(width: 0, height: 0)
+    previewImageView.layer.shadowOpacity = 0.55
+//    previewImageView.layer.borderColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.6).cgColor
+//    previewImageView.layer.borderWidth = 3.0
     trackingView?.frame = CGRect(x: topProButton.center.x - 110, y: view.center.y - 190, width: 220, height: 220)
     rectOutline = trackingView?.frame
     if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized  {
@@ -99,8 +127,13 @@ class ViewController: UIViewController {
     }
     start()
     let launches = UserDefaults.standard.integer(forKey: "launches")
-    guard launches > 1 else { return }
-    guard launches % 10 == 0 else { return }
+    guard launches > 1 else {
+      guard launches == 1 else { return }
+      //show layovers
+      
+      return
+    }
+    guard launches % 25 == 0 else { return }
     SKStoreReviewController.requestReview()
   }
   
@@ -189,22 +222,20 @@ class ViewController: UIViewController {
       UIView.animate(withDuration: 0.15) {
         self.previewImageView.layoutIfNeeded()
         guard self.previewImageView.layer.shadowOpacity != 0.55 else { return }
-        self.previewImageView.layer.shadowOpacity = 0.55
+        self.previewImageView.layer.shadowOpacity = 0.90
       }
     }
     
     func reset() {
       UIView.animate(withDuration: 0.35) {
         self.previewImageView.transform = CGAffineTransform.identity
-        self.previewImageView.layer.shadowOpacity = 0
+        self.previewImageView.layer.shadowOpacity = 0.55
       }
     }
     
     switch sender.state {
     case .began:
       imageTouchOffset = sender.location(in: previewImageView)
-      previewImageView.layer.shadowColor = UIColor.black.cgColor
-      previewImageView.layer.shadowOffset = CGSize(width: 0, height: 0)
       previewImageView.layer.shadowOpacity = 0.85
       previewImageView.layer.shadowRadius = 5
       previewImageView.clipsToBounds = false
@@ -214,7 +245,7 @@ class ViewController: UIViewController {
     case .cancelled, .failed:
       reset()
     case .ended:
-      previewImageView.layer.shadowOpacity = 0
+      previewImageView.layer.shadowOpacity = 0.55
       adjust()
     case .possible:
       break
@@ -309,6 +340,8 @@ class ViewController: UIViewController {
     case .began:
       reset()
       tracker.startingLocation = gr.location(in: view)
+      guard userImageLock else { return }
+      userImageLock = false
     case .changed:
       adjust()
     case .ended:

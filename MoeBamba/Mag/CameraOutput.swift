@@ -25,6 +25,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
       frameSize = wrongOrientationImage.extent.size
     }
     func adjustForCrop() -> CGRect? {
+      guard rectOutline != nil else { return nil }
       guard let metaRect = previewLayer?.metadataOutputRectConverted(fromLayerRect: rectOutline!) else { return nil }
       return output.outputRectConverted(fromMetadataOutputRect: metaRect)
     }
