@@ -28,11 +28,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoeBamba/Mag/ViewController.swift"
-            timestampString = "568753650.389732"
+            timestampString = "568754503.934875"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "353"
-            endingLineNumber = "353"
+            startingLineNumber = "355"
+            endingLineNumber = "355"
             landmarkName = "handlePan(gr:)"
             landmarkType = "7">
          </BreakpointContent>

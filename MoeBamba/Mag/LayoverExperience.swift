@@ -11,6 +11,10 @@ import UIKit
 
 extension ViewController {
   
+  func showNoCameraCover() {
+    
+  }
+  
   func createPreviewCoverView(with text: String, defaultSize: CGFloat) -> UILabel {
     let coverView = UILabel(frame: previewImageView.frame)
     coverView.text = text

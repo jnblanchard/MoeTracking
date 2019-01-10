@@ -23,6 +23,7 @@
 		0444C79021E5677700FFD260 /* ProOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444C78F21E5677700FFD260 /* ProOfferViewController.swift */; };
 		0444C79221E66F9200FFD260 /* LayoverExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444C79121E66F9200FFD260 /* LayoverExperience.swift */; };
 		044B58CD21C7327500B0FEB5 /* CommonTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B58CC21C7327500B0FEB5 /* CommonTypes.swift */; };
+		04A95ACB21E7A9BB00DA3C15 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */; };
 		04F7FA3C21C825F7002E5533 /* RectangleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */; };
 		04F7FA3E21C87A7F002E5533 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */; };
 /* End PBXBuildFile section */
@@ -67,6 +68,7 @@
 		0444C78F21E5677700FFD260 /* ProOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProOfferViewController.swift; sourceTree = "<group>"; };
 		0444C79121E66F9200FFD260 /* LayoverExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoverExperience.swift; sourceTree = "<group>"; };
 		044B58CC21C7327500B0FEB5 /* CommonTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTypes.swift; sourceTree = "<group>"; };
+		04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleExtensions.swift; sourceTree = "<group>"; };
 		04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -76,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A95ACB21E7A9BB00DA3C15 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -103,6 +106,7 @@
 				043A303C21BAE530009571EE /* MoeBambaTests */,
 				043A304721BAE530009571EE /* MoeBambaUITests */,
 				043A302621BAE52C009571EE /* Products */,
+				04A95AC921E7A9BB00DA3C15 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -182,6 +186,14 @@
 			path = "Go Pro";
 			sourceTree = "<group>";
 		};
+		04A95AC921E7A9BB00DA3C15 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -250,6 +262,11 @@
 				TargetAttributes = {
 					043A302421BAE52C009571EE = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 					043A303821BAE52F009571EE = {
 						CreatedOnToolsVersion = 10.1;

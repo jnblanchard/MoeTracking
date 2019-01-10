@@ -22,7 +22,7 @@ class ViewController: UIViewController {
   var isFront = false
   var writeOverTen = false
   
-  var testLayovers = true
+  var testLayovers = false
   
   override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
   override var shouldAutorotate: Bool { return false }
@@ -92,7 +92,6 @@ class ViewController: UIViewController {
     let launches = UserDefaults.standard.integer(forKey: "launches")
     guard launches > 1 && !testLayovers else {
       guard launches == 1 || testLayovers else { return }
-      //show layovers
       setLayovers()
       return
     }
@@ -109,6 +108,7 @@ class ViewController: UIViewController {
     flipButton.layer.borderWidth = 2.0
     previousUserImageView.layer.borderColor = UIColor.white.cgColor
     previousUserImageView.layer.borderWidth = 2.0
+    previousUserImageView.isHidden = previousUserImageView.image == nil
     topProButton.layer.borderColor = UIColor.white.cgColor
     topProButton.layer.borderWidth = 2.0
     previewImageView.layer.shadowColor = UIColor.black.cgColor
@@ -274,6 +274,8 @@ class ViewController: UIViewController {
       guard completed else { return }
       self.previousUserImageView.image = animateImageView.image
       animateImageView.removeFromSuperview()
+      guard self.previousUserImageView.isHidden else { return }
+      self.previousUserImageView.isHidden = false
     }
     
     func writeImg() {
