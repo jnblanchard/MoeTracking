@@ -98,6 +98,7 @@
                         <outlet property="previousUserImageView" destination="TEd-Qv-wxY" id="F7g-AN-OoS"/>
                         <outlet property="topProButton" destination="FhM-02-6eJ" id="xGE-za-YMl"/>
                         <segue destination="gKA-fS-yxr" kind="show" identifier="noCamera" id="5QW-Dl-AdG"/>
+                        <segue destination="AHL-No-Gla" kind="show" identifier="viewImage" id="YhY-qW-LMx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -135,7 +136,15 @@
                 <viewControllerPlaceholder storyboardName="NoCameraAuth" id="gKA-fS-yxr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdh-9G-15B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="665" y="8"/>
+            <point key="canvasLocation" x="710" y="237"/>
+        </scene>
+        <!--ViewImage-->
+        <scene sceneID="LWL-96-s9o">
+            <objects>
+                <viewControllerPlaceholder storyboardName="ViewImage" id="AHL-No-Gla" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="B15-Bf-vII" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="711" y="19"/>
         </scene>
         <!--ProOffer-->
         <scene sceneID="fHq-pi-img">
@@ -143,7 +152,7 @@
                 <viewControllerPlaceholder storyboardName="ProOffer" id="a06-Bv-ZvJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxS-Ld-WEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="685" y="98"/>
+            <point key="canvasLocation" x="711" y="-149"/>
         </scene>
     </scenes>
 </document>

@@ -26,6 +26,9 @@
 		04A95ACB21E7A9BB00DA3C15 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */; };
 		04A95ACE21E9792300DA3C15 /* NoCameraAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */; };
 		04A95AD021E9796A00DA3C15 /* NoCameraAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */; };
+		04A95AD321E9929E00DA3C15 /* ViewImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A95AD221E9929E00DA3C15 /* ViewImage.storyboard */; };
+		04A95AD521E992B300DA3C15 /* ViewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95AD421E992B300DA3C15 /* ViewImageViewController.swift */; };
+		04A95AD721EA4D2400DA3C15 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95AD621EA4D2400DA3C15 /* ImageScrollView.swift */; };
 		04F7FA3C21C825F7002E5533 /* RectangleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */; };
 		04F7FA3E21C87A7F002E5533 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */; };
 /* End PBXBuildFile section */
@@ -73,6 +76,9 @@
 		04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoCameraAuth.storyboard; sourceTree = "<group>"; };
 		04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCameraAuthViewController.swift; sourceTree = "<group>"; };
+		04A95AD221E9929E00DA3C15 /* ViewImage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewImage.storyboard; sourceTree = "<group>"; };
+		04A95AD421E992B300DA3C15 /* ViewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewImageViewController.swift; sourceTree = "<group>"; };
+		04A95AD621EA4D2400DA3C15 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleExtensions.swift; sourceTree = "<group>"; };
 		04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -129,6 +135,7 @@
 			children = (
 				043A302821BAE52C009571EE /* AppDelegate.swift */,
 				0444C78821E3C71B00FFD260 /* Mag */,
+				04A95AD121E9928800DA3C15 /* View Image */,
 				04A95ACC21E977A400DA3C15 /* No Camera Auth */,
 				0444C78C21E5611700FFD260 /* Go Pro */,
 				0444C78921E3C74D00FFD260 /* Extensions */,
@@ -206,6 +213,16 @@
 				04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */,
 			);
 			path = "No Camera Auth";
+			sourceTree = "<group>";
+		};
+		04A95AD121E9928800DA3C15 /* View Image */ = {
+			isa = PBXGroup;
+			children = (
+				04A95AD221E9929E00DA3C15 /* ViewImage.storyboard */,
+				04A95AD421E992B300DA3C15 /* ViewImageViewController.swift */,
+				04A95AD621EA4D2400DA3C15 /* ImageScrollView.swift */,
+			);
+			path = "View Image";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -320,6 +337,7 @@
 				043A303321BAE52F009571EE /* LaunchScreen.storyboard in Resources */,
 				0444C78E21E5642000FFD260 /* ProOffer.storyboard in Resources */,
 				043A303021BAE52F009571EE /* Assets.xcassets in Resources */,
+				04A95AD321E9929E00DA3C15 /* ViewImage.storyboard in Resources */,
 				04A95ACE21E9792300DA3C15 /* NoCameraAuth.storyboard in Resources */,
 				043A302E21BAE52C009571EE /* Main.storyboard in Resources */,
 			);
@@ -349,6 +367,7 @@
 				0444C79221E66F9200FFD260 /* LayoverExperience.swift in Sources */,
 				0444C78B21E4178600FFD260 /* SubscriptionManager.swift in Sources */,
 				04A95AD021E9796A00DA3C15 /* NoCameraAuthViewController.swift in Sources */,
+				04A95AD521E992B300DA3C15 /* ViewImageViewController.swift in Sources */,
 				0444C79021E5677700FFD260 /* ProOfferViewController.swift in Sources */,
 				043A305721BAE801009571EE /* CameraSetup.swift in Sources */,
 				0444C78521E3C68B00FFD260 /* CameraPhoto.swift in Sources */,
@@ -357,6 +376,7 @@
 				04F7FA3E21C87A7F002E5533 /* PhotoAlbum.swift in Sources */,
 				043A302B21BAE52C009571EE /* ViewController.swift in Sources */,
 				043A302921BAE52C009571EE /* AppDelegate.swift in Sources */,
+				04A95AD721EA4D2400DA3C15 /* ImageScrollView.swift in Sources */,
 				043A305921BB05A1009571EE /* TrackingView.swift in Sources */,
 				0444C78721E3C6CC00FFD260 /* CameraOutput.swift in Sources */,
 			);

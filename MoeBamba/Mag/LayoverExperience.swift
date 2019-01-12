@@ -15,6 +15,25 @@ extension ViewController {
     
   }
   
+  @objc func viewImage() {
+//    guard let currentImage = previewImageView.image else { return }
+    performSegue(withIdentifier: "viewImage", sender: self)
+  }
+  
+  func createViewImageButton() -> UIButton {
+    let coverButton = UIButton(frame: previewImageView.frame)
+    coverButton.setTitleColor(UIColor.white, for: .normal)
+    coverButton.setTitle("Tap to View", for: .normal)
+    coverButton.clipsToBounds = true
+    coverButton.translatesAutoresizingMaskIntoConstraints = false
+    coverButton.addTarget(self, action: #selector(viewImage), for: .touchUpInside)
+    previewImageView.addSubview(coverButton)
+    coverButton.trailingAnchor.constraint(equalTo: previewImageView.trailingAnchor).isActive = true
+    coverButton.bottomAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: 5).isActive = true
+    coverButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+    return coverButton
+  }
+  
   func createPreviewCoverView(with text: String, defaultSize: CGFloat) -> UILabel {
     let coverView = UILabel(frame: previewImageView.frame)
     coverView.text = text

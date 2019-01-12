@@ -52,7 +52,12 @@ class ViewController: UIViewController {
     didSet {
       if userImageLock {
         let _ = createPreviewCoverView(with: "Tap to unlock.", defaultSize: 110)
+        let _ = createViewImageButton()
       } else {
+        guard let viewImageButton = previewImageView.subviews.first(where: { (aView) -> Bool in
+          return aView is UIButton
+        }) else { return }
+        viewImageButton.removeFromSuperview()
         guard let coverView = previewImageView.subviews.first(where: { (aView) -> Bool in
           guard let temp = aView as? UILabel else { return false }
           return temp.text == "Tap to unlock."
@@ -359,6 +364,7 @@ class ViewController: UIViewController {
   }
   
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    if let viewImageVC = segue.destination as? ViewImageViewController { viewImageVC.image = previewImageView.image }
     guard let proOfferVC = segue.destination as? ProOfferViewController else { return }
     proOfferVC.product = subscriptionManager.products.last
     proOfferVC.album = album

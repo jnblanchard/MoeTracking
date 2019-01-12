@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="f0a-Bg-uPu">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Image View Controller-->
+        <scene sceneID="RTA-jr-Mix">
+            <objects>
+                <viewController id="f0a-Bg-uPu" customClass="ViewImageViewController" customModule="MoeBamba" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dyJ-kf-q1N">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hpq-g4-oaD" customClass="ImageScrollView" customModule="MoeBamba" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </scrollView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="Hpq-g4-oaD" firstAttribute="trailing" secondItem="Dn2-ZO-fZ1" secondAttribute="trailing" id="0bd-Zg-2et"/>
+                            <constraint firstItem="Hpq-g4-oaD" firstAttribute="top" secondItem="dyJ-kf-q1N" secondAttribute="top" id="Wi4-I7-sGW"/>
+                            <constraint firstItem="Hpq-g4-oaD" firstAttribute="leading" secondItem="Dn2-ZO-fZ1" secondAttribute="leading" id="aQ9-UH-Xad"/>
+                            <constraint firstItem="Hpq-g4-oaD" firstAttribute="bottom" secondItem="Dn2-ZO-fZ1" secondAttribute="bottom" id="xQB-oz-f0s"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Dn2-ZO-fZ1"/>
+                    </view>
+                    <connections>
+                        <outlet property="imageScrollView" destination="Hpq-g4-oaD" id="Seg-XF-BLq"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lRh-D7-GmK" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="72.799999999999997" y="124.58770614692655"/>
+        </scene>
+    </scenes>
+</document>
