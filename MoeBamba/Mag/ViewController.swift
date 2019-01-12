@@ -282,8 +282,13 @@ class ViewController: UIViewController {
       guard completed else { return }
       self.previousUserImageView.image = animateImageView.image
       animateImageView.removeFromSuperview()
-      guard self.previousUserImageView.isHidden else { return }
-      self.previousUserImageView.isHidden = false
+      if self.previousUserImageView.image == nil {
+        // do first time gallery thing
+        // something about it being inside an album in photos
+        // offer choice to go to settings and change
+        self.viewImage()
+      }
+      if self.previousUserImageView.isHidden { self.previousUserImageView.isHidden = false }
     }
     
     func writeImg() {

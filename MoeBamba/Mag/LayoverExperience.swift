@@ -16,8 +16,7 @@ extension ViewController {
   }
   
   @objc func viewImage() {
-//    guard let currentImage = previewImageView.image else { return }
-    performSegue(withIdentifier: "viewImage", sender: self)
+    DispatchQueue.main.async { self.performSegue(withIdentifier: "viewImage", sender: self) }
   }
   
   func createViewImageButton() -> UIButton {
@@ -28,8 +27,8 @@ extension ViewController {
     coverButton.translatesAutoresizingMaskIntoConstraints = false
     coverButton.addTarget(self, action: #selector(viewImage), for: .touchUpInside)
     previewImageView.addSubview(coverButton)
-    coverButton.trailingAnchor.constraint(equalTo: previewImageView.trailingAnchor).isActive = true
-    coverButton.bottomAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: 5).isActive = true
+    coverButton.trailingAnchor.constraint(equalTo: previewImageView.trailingAnchor, constant: 10).isActive = true
+    coverButton.bottomAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: 7).isActive = true
     coverButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
     coverButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     return coverButton

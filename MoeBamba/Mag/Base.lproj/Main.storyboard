@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="1Gn-2z-1Mp">
     <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -92,6 +92,7 @@
                             <outletCollection property="gestureRecognizers" destination="fsZ-xK-u6z" appends="YES" id="Sk4-76-Evz"/>
                         </connections>
                     </view>
+                    <navigationItem key="navigationItem" id="c09-T6-Z8f"/>
                     <connections>
                         <outlet property="flipButton" destination="cbR-42-V3G" id="cst-Rn-B6f"/>
                         <outlet property="previewImageView" destination="7hk-vi-gmF" id="edF-0u-Sxj"/>
@@ -128,7 +129,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="136.71875" y="99.0234375"/>
+            <point key="canvasLocation" x="1046.376811594203" y="98.4375"/>
         </scene>
         <!--NoCameraAuth-->
         <scene sceneID="eSf-4g-14u">
@@ -136,7 +137,7 @@
                 <viewControllerPlaceholder storyboardName="NoCameraAuth" id="gKA-fS-yxr" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vdh-9G-15B" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="710" y="237"/>
+            <point key="canvasLocation" x="1618.840579710145" y="236.38392857142856"/>
         </scene>
         <!--ViewImage-->
         <scene sceneID="LWL-96-s9o">
@@ -144,7 +145,7 @@
                 <viewControllerPlaceholder storyboardName="ViewImage" id="AHL-No-Gla" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B15-Bf-vII" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="711" y="19"/>
+            <point key="canvasLocation" x="1621.0144927536232" y="18.75"/>
         </scene>
         <!--ProOffer-->
         <scene sceneID="fHq-pi-img">
@@ -152,7 +153,24 @@
                 <viewControllerPlaceholder storyboardName="ProOffer" id="a06-Bv-ZvJ" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rxS-Ld-WEA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="711" y="-149"/>
+            <point key="canvasLocation" x="1621.0144927536232" y="-149.33035714285714"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="pA5-Ft-RAk">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="1Gn-2z-1Mp" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="45U-9G-x2x">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="ubz-yf-Pbg"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mff-TM-iSr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="307" y="98"/>
         </scene>
     </scenes>
 </document>

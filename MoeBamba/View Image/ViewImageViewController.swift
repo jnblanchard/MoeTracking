@@ -19,5 +19,13 @@ class ViewImageViewController: UIViewController {
     if let img = image {
       imageScrollView.display(image: img)
     }
+    guard CustomPhotoAlbum.sharedInstance.auth != .authorized else { return }
+    
+  }
+  
+  @IBAction func backButtonTapped(_ sender: Any) {
+    navigationController?.dismiss(animated: true, completion: {
+      self.image = nil
+    })
   }
 }
