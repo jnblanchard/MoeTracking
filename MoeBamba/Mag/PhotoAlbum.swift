@@ -27,6 +27,8 @@ class CustomPhotoAlbum: NSObject {
   
   var assetCollection: PHAssetCollection!
   
+  var auth: PHAuthorizationStatus = .notDetermined
+  
   override init() {
     super.init()
     
@@ -44,14 +46,22 @@ class CustomPhotoAlbum: NSObject {
     if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
       self.createAlbum()
     } else {
-      PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+      //PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+    }
+  }
+  
+  public func requestAuth(completion: ()? = nil) {
+    if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
+      PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
+        self.createAlbum()
+        completion
+      })
     }
   }
   
   func requestAuthorizationHandler(status: PHAuthorizationStatus) {
     if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
       self.createAlbum()
-    } else {
     }
   }
   
@@ -66,6 +76,7 @@ class CustomPhotoAlbum: NSObject {
     }) { success, error in
       if success {
         self.assetCollection = self.fetchAssetCollectionForAlbum()
+        self.auth = .authorized
       }
     }
   }
@@ -92,6 +103,10 @@ class CustomPhotoAlbum: NSObject {
   }
   
   func save(image: UIImage) {
+    guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else {
+      requestAuth(completion: save(image: image))
+      return
+    }
     if assetCollection == nil {
       return                          // if there was an error upstream, skip the save
     }

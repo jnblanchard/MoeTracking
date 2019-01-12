@@ -24,6 +24,8 @@
 		0444C79221E66F9200FFD260 /* LayoverExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444C79121E66F9200FFD260 /* LayoverExperience.swift */; };
 		044B58CD21C7327500B0FEB5 /* CommonTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B58CC21C7327500B0FEB5 /* CommonTypes.swift */; };
 		04A95ACB21E7A9BB00DA3C15 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */; };
+		04A95ACE21E9792300DA3C15 /* NoCameraAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */; };
+		04A95AD021E9796A00DA3C15 /* NoCameraAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */; };
 		04F7FA3C21C825F7002E5533 /* RectangleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */; };
 		04F7FA3E21C87A7F002E5533 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */; };
 /* End PBXBuildFile section */
@@ -69,6 +71,8 @@
 		0444C79121E66F9200FFD260 /* LayoverExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoverExperience.swift; sourceTree = "<group>"; };
 		044B58CC21C7327500B0FEB5 /* CommonTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTypes.swift; sourceTree = "<group>"; };
 		04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoCameraAuth.storyboard; sourceTree = "<group>"; };
+		04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCameraAuthViewController.swift; sourceTree = "<group>"; };
 		04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleExtensions.swift; sourceTree = "<group>"; };
 		04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +129,7 @@
 			children = (
 				043A302821BAE52C009571EE /* AppDelegate.swift */,
 				0444C78821E3C71B00FFD260 /* Mag */,
+				04A95ACC21E977A400DA3C15 /* No Camera Auth */,
 				0444C78C21E5611700FFD260 /* Go Pro */,
 				0444C78921E3C74D00FFD260 /* Extensions */,
 				043A302F21BAE52F009571EE /* Assets.xcassets */,
@@ -192,6 +197,15 @@
 				04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		04A95ACC21E977A400DA3C15 /* No Camera Auth */ = {
+			isa = PBXGroup;
+			children = (
+				04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */,
+				04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */,
+			);
+			path = "No Camera Auth";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -306,6 +320,7 @@
 				043A303321BAE52F009571EE /* LaunchScreen.storyboard in Resources */,
 				0444C78E21E5642000FFD260 /* ProOffer.storyboard in Resources */,
 				043A303021BAE52F009571EE /* Assets.xcassets in Resources */,
+				04A95ACE21E9792300DA3C15 /* NoCameraAuth.storyboard in Resources */,
 				043A302E21BAE52C009571EE /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -333,6 +348,7 @@
 			files = (
 				0444C79221E66F9200FFD260 /* LayoverExperience.swift in Sources */,
 				0444C78B21E4178600FFD260 /* SubscriptionManager.swift in Sources */,
+				04A95AD021E9796A00DA3C15 /* NoCameraAuthViewController.swift in Sources */,
 				0444C79021E5677700FFD260 /* ProOfferViewController.swift in Sources */,
 				043A305721BAE801009571EE /* CameraSetup.swift in Sources */,
 				0444C78521E3C68B00FFD260 /* CameraPhoto.swift in Sources */,

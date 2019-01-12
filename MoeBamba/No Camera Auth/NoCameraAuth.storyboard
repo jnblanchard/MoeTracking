@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="TBS-i4-pKR">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--No Camera Auth View Controller-->
+        <scene sceneID="fR3-00-A5f">
+            <objects>
+                <viewController id="TBS-i4-pKR" customClass="NoCameraAuthViewController" customModule="MoeBamba" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="LcW-ZI-pf8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LD4-lu-jDI">
+                                <rect key="frame" x="104.5" y="747" width="205" height="100"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.64027718320000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="205" id="KqA-qX-xWr"/>
+                                    <constraint firstAttribute="height" constant="100" id="xY3-sK-bUT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                <state key="normal" title="Settings">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="6"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="settingsButtonTapped:" destination="TBS-i4-pKR" eventType="touchUpInside" id="zoX-ia-LoI"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CamOff" translatesAutoresizingMaskIntoConstraints="NO" id="d2i-4j-M3F">
+                                <rect key="frame" x="8" y="143.5" width="195" height="588.5"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CamOn" translatesAutoresizingMaskIntoConstraints="NO" id="FMe-hV-sCB">
+                                <rect key="frame" x="211" y="143.5" width="195" height="588.5"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Permission Necessary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mG-RH-l7x">
+                                <rect key="frame" x="68" y="54" width="278" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="25" id="BZM-H0-VF2"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="19"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please use the button to connect to settings. Please switch Magnifier's Camera on.  (right)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8j-qR-w17">
+                                <rect key="frame" x="5" y="79" width="404" height="64.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64.5" id="7vQ-Xs-GtD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="d2i-4j-M3F" firstAttribute="leading" secondItem="o8c-Ja-cyg" secondAttribute="leading" constant="8" id="7cT-A6-Jdz"/>
+                            <constraint firstItem="LD4-lu-jDI" firstAttribute="centerX" secondItem="o8c-Ja-cyg" secondAttribute="centerX" id="8cX-n2-OEJ"/>
+                            <constraint firstItem="FMe-hV-sCB" firstAttribute="leading" secondItem="d2i-4j-M3F" secondAttribute="trailing" constant="8" id="CP2-3n-g1V"/>
+                            <constraint firstItem="o8c-Ja-cyg" firstAttribute="trailing" secondItem="FMe-hV-sCB" secondAttribute="trailing" constant="8" id="IN3-19-p6h"/>
+                            <constraint firstAttribute="trailing" secondItem="I8j-qR-w17" secondAttribute="trailing" constant="5" id="J0p-Pg-hRK"/>
+                            <constraint firstItem="o8c-Ja-cyg" firstAttribute="bottom" secondItem="LD4-lu-jDI" secondAttribute="bottom" constant="15" id="LLz-tz-6Mj"/>
+                            <constraint firstItem="7mG-RH-l7x" firstAttribute="top" secondItem="o8c-Ja-cyg" secondAttribute="top" constant="10" id="Vnh-5E-vCW"/>
+                            <constraint firstItem="d2i-4j-M3F" firstAttribute="top" secondItem="I8j-qR-w17" secondAttribute="bottom" id="Vzf-84-oic"/>
+                            <constraint firstItem="d2i-4j-M3F" firstAttribute="width" secondItem="FMe-hV-sCB" secondAttribute="width" id="WSp-At-GQo"/>
+                            <constraint firstItem="d2i-4j-M3F" firstAttribute="height" secondItem="FMe-hV-sCB" secondAttribute="height" id="dPf-na-AHb"/>
+                            <constraint firstItem="I8j-qR-w17" firstAttribute="top" secondItem="7mG-RH-l7x" secondAttribute="bottom" id="gp3-ke-tko"/>
+                            <constraint firstItem="7mG-RH-l7x" firstAttribute="centerX" secondItem="o8c-Ja-cyg" secondAttribute="centerX" id="lk0-8m-eS9"/>
+                            <constraint firstItem="I8j-qR-w17" firstAttribute="leading" secondItem="LcW-ZI-pf8" secondAttribute="leading" constant="5" id="m4A-hS-sJZ"/>
+                            <constraint firstItem="LD4-lu-jDI" firstAttribute="top" secondItem="d2i-4j-M3F" secondAttribute="bottom" constant="15" id="sFm-b4-PCc"/>
+                            <constraint firstItem="FMe-hV-sCB" firstAttribute="width" secondItem="LcW-ZI-pf8" secondAttribute="height" multiplier="37:120" priority="500" id="t7F-Rg-2la"/>
+                            <constraint firstItem="LD4-lu-jDI" firstAttribute="top" secondItem="FMe-hV-sCB" secondAttribute="bottom" constant="15" id="zal-69-11f"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="o8c-Ja-cyg"/>
+                    </view>
+                    <connections>
+                        <outlet property="settingsButton" destination="LD4-lu-jDI" id="Tve-eX-HXx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NPU-2a-9dM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-215.625" y="13.75"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="CamOff" width="325" height="268"/>
+        <image name="CamOn" width="326" height="261"/>
+    </resources>
+</document>

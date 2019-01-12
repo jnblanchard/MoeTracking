@@ -97,6 +97,7 @@
                         <outlet property="previewImageView" destination="7hk-vi-gmF" id="edF-0u-Sxj"/>
                         <outlet property="previousUserImageView" destination="TEd-Qv-wxY" id="F7g-AN-OoS"/>
                         <outlet property="topProButton" destination="FhM-02-6eJ" id="xGE-za-YMl"/>
+                        <segue destination="gKA-fS-yxr" kind="show" identifier="noCamera" id="5QW-Dl-AdG"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -127,6 +128,14 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="136.71875" y="99.0234375"/>
+        </scene>
+        <!--NoCameraAuth-->
+        <scene sceneID="eSf-4g-14u">
+            <objects>
+                <viewControllerPlaceholder storyboardName="NoCameraAuth" id="gKA-fS-yxr" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vdh-9G-15B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="665" y="8"/>
         </scene>
         <!--ProOffer-->
         <scene sceneID="fHq-pi-img">

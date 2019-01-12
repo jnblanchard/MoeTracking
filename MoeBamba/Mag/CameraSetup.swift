@@ -63,21 +63,31 @@ extension ViewController {
     UIView.setAnimationsEnabled(false)
     UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
     UIView.setAnimationsEnabled(true)
+    
+    func noCameraSettingsScreen() {
+      DispatchQueue.main.async {
+        self.performSegue(withIdentifier: "noCamera", sender: self)
+      }
+    }
+    
     switch AVCaptureDevice.authorizationStatus(for: AVMediaType.video) {
     case .authorized:
       createOutput()
-      break
     case .denied:
+      noCameraSettingsScreen()
+      // set auth
       //ask for settings auth TODO
-      break
     case .notDetermined:
       AVCaptureDevice.requestAccess(for: AVMediaType.video) { response in
-        guard response else { return }
+        guard response else {
+          noCameraSettingsScreen()
+          return
+        }
         createOutput()
       }
     case .restricted:
       // Continue with restriction
-      break
+      noCameraSettingsScreen()
     }
   }
   

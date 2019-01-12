@@ -118,7 +118,7 @@ class ViewController: UIViewController {
 //    previewImageView.layer.borderWidth = 3.0
     trackingView?.frame = CGRect(x: topProButton.center.x - 110, y: view.center.y - 190, width: 220, height: 220)
     rectOutline = trackingView?.frame
-    if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized  {
+    if album.auth == PHAuthorizationStatus.authorized  {
       guard let lastAsset = PHAsset.fetchAssets(in: album.assetCollection, options: nil).lastObject else { return }
       fetchImage(asset: lastAsset) { (image) in
         self.previousUserImageView.image = image
