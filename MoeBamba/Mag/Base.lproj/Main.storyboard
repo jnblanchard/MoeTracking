@@ -98,7 +98,7 @@
                         <outlet property="previousUserImageView" destination="TEd-Qv-wxY" id="F7g-AN-OoS"/>
                         <outlet property="topProButton" destination="FhM-02-6eJ" id="xGE-za-YMl"/>
                         <segue destination="gKA-fS-yxr" kind="show" identifier="noCamera" id="5QW-Dl-AdG"/>
-                        <segue destination="AHL-No-Gla" kind="show" identifier="viewImage" id="YhY-qW-LMx"/>
+                        <segue destination="AHL-No-Gla" kind="showDetail" identifier="viewImage" id="YhY-qW-LMx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

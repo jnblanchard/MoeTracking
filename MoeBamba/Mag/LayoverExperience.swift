@@ -31,6 +31,7 @@ extension ViewController {
     coverButton.trailingAnchor.constraint(equalTo: previewImageView.trailingAnchor).isActive = true
     coverButton.bottomAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: 5).isActive = true
     coverButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+    coverButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     return coverButton
   }
   
@@ -55,7 +56,7 @@ extension ViewController {
     return coverView
   }
   
-  func setLayovers() {
+  func setFirstTimeLayovers() {
     let _ = createPreviewCoverView(with: "Tap to capture.", defaultSize: 110)
   }
   

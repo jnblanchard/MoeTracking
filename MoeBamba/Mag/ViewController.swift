@@ -54,15 +54,18 @@ class ViewController: UIViewController {
         let _ = createPreviewCoverView(with: "Tap to unlock.", defaultSize: 110)
         let _ = createViewImageButton()
       } else {
-        guard let viewImageButton = previewImageView.subviews.first(where: { (aView) -> Bool in
+        if let viewImageButton = previewImageView.subviews.first(where: { (aView) -> Bool in
           return aView is UIButton
-        }) else { return }
-        viewImageButton.removeFromSuperview()
-        guard let coverView = previewImageView.subviews.first(where: { (aView) -> Bool in
+        }) {
+          viewImageButton.removeFromSuperview()
+        }
+        
+        if let firstTimeCoverView = previewImageView.subviews.first(where: { (aView) -> Bool in
           guard let temp = aView as? UILabel else { return false }
           return temp.text == "Tap to unlock."
-        }) else { return }
-        coverView.removeFromSuperview()
+        }) {
+          firstTimeCoverView.removeFromSuperview()
+        }
       }
     }
   }
@@ -97,7 +100,7 @@ class ViewController: UIViewController {
     let launches = UserDefaults.standard.integer(forKey: "launches")
     guard launches > 1 && !testLayovers else {
       guard launches == 1 || testLayovers else { return }
-      setLayovers()
+      setFirstTimeLayovers()
       return
     }
     guard launches % 25 == 0 else { return }
