@@ -60,10 +60,6 @@ extension ViewController {
       deviceQueue.async { self.captureSession.startRunning() }
     }
     
-    UIView.setAnimationsEnabled(false)
-    UIDevice.current.setValue(UIInterfaceOrientation.portrait.rawValue, forKey: "orientation")
-    UIView.setAnimationsEnabled(true)
-    
     func noCameraSettingsScreen() {
       DispatchQueue.main.async {
         self.performSegue(withIdentifier: "noCamera", sender: self)

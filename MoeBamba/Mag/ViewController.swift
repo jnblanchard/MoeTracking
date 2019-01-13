@@ -12,6 +12,13 @@ import Vision
 import Photos
 import StoreKit
 
+extension UINavigationController {
+  
+  override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    return topViewController?.supportedInterfaceOrientations ?? .portrait
+  }
+}
+
 
 class ViewController: UIViewController {
   @IBOutlet weak var flipButton: UIButton!
@@ -24,9 +31,11 @@ class ViewController: UIViewController {
   
   var testLayovers = false
   
-  override var supportedInterfaceOrientations: UIInterfaceOrientationMask { return .portrait }
-  override var shouldAutorotate: Bool { return false }
-  override var prefersStatusBarHidden: Bool { return true }
+  var currentOrientation: UIDeviceOrientation = .portrait
+  
+  override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {return .portrait }
+  override open var shouldAutorotate: Bool { return false }
+  override open var prefersStatusBarHidden: Bool { return true }
   
   let deviceQueue = DispatchQueue(label: "moe.camera.device", autoreleaseFrequency: .workItem)
   let videoBufferQueue = DispatchQueue(label: "moe.camera.buffer", autoreleaseFrequency: .workItem)
@@ -92,6 +101,8 @@ class ViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    forcePortrait()
+    NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
     sizeWidth = view.frame.width
     sizeHeight = view.frame.height
     let pangr = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gr:)))
@@ -107,8 +118,32 @@ class ViewController: UIViewController {
     SKStoreReviewController.requestReview()
   }
   
+  @objc func orientationChanged() {
+    currentOrientation = UIDevice.current.orientation
+    var transform = CGAffineTransform.identity
+    switch currentOrientation {
+    case .portrait:
+      break
+    case .landscapeRight:
+      transform = CGAffineTransform(rotationAngle: -.pi/2)
+      break
+    case .landscapeLeft:
+      transform = CGAffineTransform(rotationAngle: .pi/2)
+    default:
+      break
+    }
+    UIView.animate(withDuration: 0.45) {
+      self.previewImageView.transform = transform
+      self.flipButton.transform = transform
+      self.previewImageView.transform = transform
+      self.topProButton.transform = transform
+      self.previousUserImageView.transform = transform
+    }
+  }
+  
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
+    currentOrientation = .portrait
     topProButton.layer.cornerRadius = topProButton.frame.height/2
     previousUserImageView.layer.cornerRadius = previousUserImageView.frame.height/2
     flipButton.layer.cornerRadius = flipButton.frame.height/2
@@ -124,10 +159,11 @@ class ViewController: UIViewController {
     previewImageView.layer.shadowOpacity = 0.55
 //    previewImageView.layer.borderColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.6).cgColor
 //    previewImageView.layer.borderWidth = 3.0
-    trackingView?.frame = CGRect(x: topProButton.center.x - 110, y: view.center.y - 190, width: 220, height: 220)
+    trackingView?.frame = CGRect(x: topProButton.center.x - 40, y: view.center.y - 120, width: 80, height: 80)
     rectOutline = trackingView?.frame
-    if album.auth == PHAuthorizationStatus.authorized  {
-      guard let lastAsset = PHAsset.fetchAssets(in: album.assetCollection, options: nil).lastObject else { return }
+    imageViewSet: if album.auth == PHAuthorizationStatus.authorized  {
+      guard album.assetCollection != nil else { break imageViewSet }
+      guard let lastAsset = PHAsset.fetchAssets(in: album.assetCollection!, options: nil).lastObject else { return }
       fetchImage(asset: lastAsset) { (image) in
         self.previousUserImageView.image = image
       }
@@ -255,7 +291,7 @@ class ViewController: UIViewController {
     userImageLock.toggle()
     guard userImageLock else { return }
     
-    let albumCount = PHAsset.fetchAssets(in: album.assetCollection, options: nil).count
+    let albumCount = album.count()
     
     guard albumCount < 300 || writeOverTen else {
       album.removeEldest()

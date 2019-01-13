@@ -14,12 +14,19 @@ class ProOfferViewController: UIViewController {
   
   @IBOutlet weak var proButton: UIButton!
   
+  override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+    return .portrait
+  }
+  
+  override var shouldAutorotate: Bool { return false }
+  
   
   var product: SKProduct?
   var album: CustomPhotoAlbum?
   
   override func viewDidLoad() {
     super.viewDidLoad()
+    forcePortrait()
   }
   
   override func viewWillAppear(_ animated: Bool) {

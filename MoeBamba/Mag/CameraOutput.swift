@@ -32,9 +32,20 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     //cropped to image -- need to check landscape
     guard let highlightedArea = adjustForCrop()?.applying(CGAffineTransform(translationX: 0, y: -ciImg.extent.height)).applying(CGAffineTransform(scaleX: 1, y: -1)) else { return }
     let img = ciImg.cropped(to: highlightedArea)
+    var relativeImg = img
+    switch currentOrientation {
+    case .portrait:
+      break
+    case .landscapeRight:
+      relativeImg = img.oriented(forExifOrientation: 6)
+    case .landscapeLeft:
+      relativeImg = img.oriented(forExifOrientation: 8)
+    default:
+      break
+    }
     DispatchQueue.main.async {
       guard !self.userImageLock else { return }
-      guard let cgimg = CIContext(options: nil).createCGImage(img, from: img.extent) else { return }
+      guard let cgimg = CIContext(options: nil).createCGImage(relativeImg, from: relativeImg.extent) else { return }
       self.previewImageView.image = UIImage(cgImage: cgimg)
     }
     /*

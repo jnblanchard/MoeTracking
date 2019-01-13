@@ -21,15 +21,19 @@ extension ViewController {
   
   func createViewImageButton() -> UIButton {
     let coverButton = UIButton(frame: previewImageView.frame)
-    coverButton.setTitleColor(UIColor.white, for: .normal)
-    coverButton.setTitle("Tap to View", for: .normal)
+//    coverButton.setTitleColor(UIColor.white, for: .normal)
     coverButton.clipsToBounds = true
+    coverButton.backgroundColor = UIColor(white: 0, alpha: 0.4)
+    coverButton.setAttributedTitle(NSAttributedString(string: "Tap to View", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.white]), for: .normal)
     coverButton.translatesAutoresizingMaskIntoConstraints = false
+    coverButton.layer.cornerRadius = 6
+    coverButton.layer.borderColor = UIColor.white.cgColor
+    coverButton.layer.borderWidth = 2.0
     coverButton.addTarget(self, action: #selector(viewImage), for: .touchUpInside)
     previewImageView.addSubview(coverButton)
-    coverButton.trailingAnchor.constraint(equalTo: previewImageView.trailingAnchor, constant: 10).isActive = true
-    coverButton.bottomAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: 7).isActive = true
-    coverButton.widthAnchor.constraint(equalToConstant: 80).isActive = true
+    coverButton.centerXAnchor.constraint(equalTo: previewImageView.centerXAnchor).isActive = true
+    coverButton.bottomAnchor.constraint(equalTo: previewImageView.bottomAnchor, constant: -7).isActive = true
+    coverButton.widthAnchor.constraint(equalToConstant: 140).isActive = true
     coverButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
     return coverButton
   }

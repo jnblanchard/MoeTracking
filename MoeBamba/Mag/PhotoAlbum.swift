@@ -25,7 +25,7 @@ class CustomPhotoAlbum: NSObject {
   static let albumName = "Magnified Images"
   static let sharedInstance = CustomPhotoAlbum()
   
-  var assetCollection: PHAssetCollection!
+  var assetCollection: PHAssetCollection?
   
   var auth: PHAuthorizationStatus = .notDetermined
   
@@ -67,7 +67,8 @@ class CustomPhotoAlbum: NSObject {
   
   func count() -> Int {
     guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else { return 0 }
-    return PHAsset.fetchAssets(in: assetCollection, options: nil).count
+    guard assetCollection != nil else { return 0 }
+    return PHAsset.fetchAssets(in: assetCollection!, options: nil).count
   }
   
   func createAlbum() {
@@ -94,7 +95,8 @@ class CustomPhotoAlbum: NSObject {
   
   func removeEldest(completion: ((Bool) -> ())? = nil) {
     guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else { return }
-    guard let first = PHAsset.fetchAssets(in: assetCollection, options: nil).firstObject else { return }
+    guard assetCollection != nil else { return }
+    guard let first = PHAsset.fetchAssets(in: assetCollection!, options: nil).firstObject else { return }
     PHPhotoLibrary.shared().performChanges({
       PHAssetChangeRequest.deleteAssets([first] as NSFastEnumeration)
     }) { (complete, error) in
@@ -104,7 +106,7 @@ class CustomPhotoAlbum: NSObject {
   
   func save(image: UIImage) {
     guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else {
-      requestAuth(completion: save(image: image))
+      //requestAuth(completion: save(image: image))
       return
     }
     if assetCollection == nil {
@@ -114,7 +116,7 @@ class CustomPhotoAlbum: NSObject {
     PHPhotoLibrary.shared().performChanges({
       let assetChangeRequest = PHAssetChangeRequest.creationRequestForAsset(from: image)
       let assetPlaceHolder = assetChangeRequest.placeholderForCreatedAsset
-      let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection)
+      let albumChangeRequest = PHAssetCollectionChangeRequest(for: self.assetCollection!)
       let enumeration: NSArray = [assetPlaceHolder!]
       albumChangeRequest!.addAssets(enumeration)
       
