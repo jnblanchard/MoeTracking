@@ -29,7 +29,22 @@ extension SubscriptionManager: SKProductsRequestDelegate {
   }
 }
 
-extension ViewController: SKPaymentTransactionObserver {
+extension ProOfferViewController: SKPaymentTransactionObserver {
+  public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
+    guard let firstTransaction = transactions.last?.original else { return }
+    switch firstTransaction.transactionState {
+    case .purchased:
+      dismiss(animated: true, completion: nil)
+    case .restored:
+      guard firstTransaction.original != nil else { return }
+      dismiss(animated: true, completion: nil)
+    default:
+      break
+    }
+  }
+}
+
+extension MagnificationViewController: SKPaymentTransactionObserver {
   public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
     guard let firstTransaction = transactions.last?.original else { return }
     switch firstTransaction.transactionState {
@@ -43,6 +58,6 @@ extension ViewController: SKPaymentTransactionObserver {
     default:
       break
     }
-    //topProButton.isHidden = writeOverTen
+    topProButton.isHidden = writeOverTen
   }
 }

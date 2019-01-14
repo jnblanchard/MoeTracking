@@ -19,11 +19,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LD4-lu-jDI">
-                                <rect key="frame" x="104.5" y="747" width="205" height="100"/>
+                                <rect key="frame" x="104.5" y="762" width="205" height="85"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.64027718320000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="205" id="KqA-qX-xWr"/>
-                                    <constraint firstAttribute="height" constant="100" id="xY3-sK-bUT"/>
+                                    <constraint firstAttribute="height" constant="85" id="xY3-sK-bUT"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                 <state key="normal" title="Settings">
@@ -40,13 +40,13 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CamOff" translatesAutoresizingMaskIntoConstraints="NO" id="d2i-4j-M3F">
-                                <rect key="frame" x="8" y="143.5" width="195" height="588.5"/>
+                                <rect key="frame" x="8" y="184" width="195" height="563"/>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CamOn" translatesAutoresizingMaskIntoConstraints="NO" id="FMe-hV-sCB">
-                                <rect key="frame" x="211" y="143.5" width="195" height="588.5"/>
+                                <rect key="frame" x="211" y="184" width="195" height="563"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Camera Permission Necessary" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7mG-RH-l7x">
-                                <rect key="frame" x="68" y="54" width="278" height="25"/>
+                                <rect key="frame" x="68" y="59" width="278" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="BZM-H0-VF2"/>
                                 </constraints>
@@ -54,10 +54,10 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please use the button to connect to settings. Please switch Magnifier's Camera on.  (right)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8j-qR-w17">
-                                <rect key="frame" x="5" y="79" width="404" height="64.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please use the button to connect to settings. Please switch Magnifier's Camera on.  (right)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I8j-qR-w17">
+                                <rect key="frame" x="30" y="94" width="354" height="90"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="64.5" id="7vQ-Xs-GtD"/>
+                                    <constraint firstAttribute="height" constant="90" id="7vQ-Xs-GtD"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                 <nil key="textColor"/>
@@ -70,15 +70,15 @@
                             <constraint firstItem="LD4-lu-jDI" firstAttribute="centerX" secondItem="o8c-Ja-cyg" secondAttribute="centerX" id="8cX-n2-OEJ"/>
                             <constraint firstItem="FMe-hV-sCB" firstAttribute="leading" secondItem="d2i-4j-M3F" secondAttribute="trailing" constant="8" id="CP2-3n-g1V"/>
                             <constraint firstItem="o8c-Ja-cyg" firstAttribute="trailing" secondItem="FMe-hV-sCB" secondAttribute="trailing" constant="8" id="IN3-19-p6h"/>
-                            <constraint firstAttribute="trailing" secondItem="I8j-qR-w17" secondAttribute="trailing" constant="5" id="J0p-Pg-hRK"/>
+                            <constraint firstAttribute="trailing" secondItem="I8j-qR-w17" secondAttribute="trailing" constant="30" id="J0p-Pg-hRK"/>
                             <constraint firstItem="o8c-Ja-cyg" firstAttribute="bottom" secondItem="LD4-lu-jDI" secondAttribute="bottom" constant="15" id="LLz-tz-6Mj"/>
-                            <constraint firstItem="7mG-RH-l7x" firstAttribute="top" secondItem="o8c-Ja-cyg" secondAttribute="top" constant="10" id="Vnh-5E-vCW"/>
+                            <constraint firstItem="7mG-RH-l7x" firstAttribute="top" secondItem="o8c-Ja-cyg" secondAttribute="top" constant="15" id="Vnh-5E-vCW"/>
                             <constraint firstItem="d2i-4j-M3F" firstAttribute="top" secondItem="I8j-qR-w17" secondAttribute="bottom" id="Vzf-84-oic"/>
                             <constraint firstItem="d2i-4j-M3F" firstAttribute="width" secondItem="FMe-hV-sCB" secondAttribute="width" id="WSp-At-GQo"/>
                             <constraint firstItem="d2i-4j-M3F" firstAttribute="height" secondItem="FMe-hV-sCB" secondAttribute="height" id="dPf-na-AHb"/>
-                            <constraint firstItem="I8j-qR-w17" firstAttribute="top" secondItem="7mG-RH-l7x" secondAttribute="bottom" id="gp3-ke-tko"/>
+                            <constraint firstItem="I8j-qR-w17" firstAttribute="top" secondItem="7mG-RH-l7x" secondAttribute="bottom" constant="10" id="gp3-ke-tko"/>
                             <constraint firstItem="7mG-RH-l7x" firstAttribute="centerX" secondItem="o8c-Ja-cyg" secondAttribute="centerX" id="lk0-8m-eS9"/>
-                            <constraint firstItem="I8j-qR-w17" firstAttribute="leading" secondItem="LcW-ZI-pf8" secondAttribute="leading" constant="5" id="m4A-hS-sJZ"/>
+                            <constraint firstItem="I8j-qR-w17" firstAttribute="leading" secondItem="LcW-ZI-pf8" secondAttribute="leading" constant="30" id="m4A-hS-sJZ"/>
                             <constraint firstItem="LD4-lu-jDI" firstAttribute="top" secondItem="d2i-4j-M3F" secondAttribute="bottom" constant="15" id="sFm-b4-PCc"/>
                             <constraint firstItem="FMe-hV-sCB" firstAttribute="width" secondItem="LcW-ZI-pf8" secondAttribute="height" multiplier="37:120" priority="500" id="t7F-Rg-2la"/>
                             <constraint firstItem="LD4-lu-jDI" firstAttribute="top" secondItem="FMe-hV-sCB" secondAttribute="bottom" constant="15" id="zal-69-11f"/>

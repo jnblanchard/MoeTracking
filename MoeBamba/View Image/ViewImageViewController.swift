@@ -34,7 +34,8 @@ class ViewImageViewController: UIViewController {
       didFinishDisplay = true
     }
     guard PHPhotoLibrary.authorizationStatus() != .authorized else {
-      guard !saved else { return }
+      guard !saved, let img = image else { return }
+      CustomPhotoAlbum.sharedInstance.save(image: img)
       return
     }
     warningBottomConstraint.constant = 25
@@ -44,7 +45,7 @@ class ViewImageViewController: UIViewController {
   }
   
   @IBAction func okaySettingsButtonTapped(_ sender: Any) {
-    warningBottomConstraint.constant = -340
+    warningBottomConstraint.constant = -600
     UIView.animate(withDuration: 0.95, delay: 0, options: .curveEaseIn, animations: {
       self.view.layoutIfNeeded()
     }, completion: nil)
@@ -55,8 +56,10 @@ class ViewImageViewController: UIViewController {
   }
   
   @IBAction func backButtonTapped(_ sender: Any) {
-    dismiss(animated: true) {
-      self.image = nil
-    }
+    dismiss(animated: true, completion: nil)
+  }
+  
+  deinit {
+    image = nil
   }
 }

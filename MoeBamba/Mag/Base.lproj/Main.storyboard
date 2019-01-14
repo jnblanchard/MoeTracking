@@ -10,10 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Magnification View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MoeBamba" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="MagnificationViewController" customModule="MoeBamba" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -90,6 +90,7 @@
                         <connections>
                             <outletCollection property="gestureRecognizers" destination="sOn-Yq-VLg" appends="YES" id="dfc-mD-dNl"/>
                             <outletCollection property="gestureRecognizers" destination="fsZ-xK-u6z" appends="YES" id="Sk4-76-Evz"/>
+                            <outletCollection property="gestureRecognizers" destination="KUD-aK-PnY" appends="YES" id="AMS-1n-Gde"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="c09-T6-Z8f"/>
@@ -128,6 +129,11 @@
                         <action selector="focusTap:" destination="BYZ-38-t0r" id="qur-9j-sHT"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="KUD-aK-PnY">
+                    <connections>
+                        <action selector="handleTrackerViewPan:" destination="BYZ-38-t0r" id="5Gm-QN-2Ng"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1046.376811594203" y="98.4375"/>
         </scene>

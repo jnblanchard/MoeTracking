@@ -10,7 +10,7 @@ import Foundation
 import AVFoundation
 import UIKit
 
-extension ViewController {
+extension MagnificationViewController {
   func start() {
     func createOutput() {
       guard !captureSession.isRunning else { return }

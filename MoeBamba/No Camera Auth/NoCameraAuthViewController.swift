@@ -14,14 +14,14 @@ class NoCameraAuthViewController: UIViewController {
   
   override func viewDidLoad() {
     super.viewDidLoad()
-  }
-  
-  override func viewDidAppear(_ animated: Bool) {
-    super.viewDidAppear(animated)
     settingsButton.layer.masksToBounds = false
     settingsButton.layer.shadowColor = UIColor.black.cgColor
     settingsButton.layer.shadowOffset = CGSize(width: 0, height: 0)
     settingsButton.layer.shadowOpacity = 0.85
+  }
+  
+  override func viewDidAppear(_ animated: Bool) {
+    super.viewDidAppear(animated)
   }
   
   @IBAction func settingsButtonTapped(_ sender: Any) {

@@ -12,51 +12,11 @@ import Vision
 import Photos
 import StoreKit
 
-extension UINavigationController {
-  
-  override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-    return topViewController?.supportedInterfaceOrientations ?? .portrait
-  }
-}
-
-
-class ViewController: UIViewController {
+class MagnificationViewController: UIViewController {
   @IBOutlet weak var flipButton: UIButton!
   @IBOutlet weak var topProButton: UIButton!
   @IBOutlet weak var previousUserImageView: UIImageView!
   @IBOutlet weak var previewImageView: UIImageView!
-  var imageTouchOffset: CGPoint?
-  var isFront = false
-  var writeOverTen = false
-  
-  var testLayovers = false
-  
-  var currentOrientation: UIDeviceOrientation = .portrait
-  
-  override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {return .portrait }
-  override open var shouldAutorotate: Bool { return false }
-  override open var prefersStatusBarHidden: Bool { return true }
-  
-  let deviceQueue = DispatchQueue(label: "moe.camera.device", autoreleaseFrequency: .workItem)
-  let videoBufferQueue = DispatchQueue(label: "moe.camera.buffer", autoreleaseFrequency: .workItem)
-  
-  public var captureSession = AVCaptureSession()
-  public var captureOutput = AVCaptureVideoDataOutput()
-  public var photoOutput = AVCapturePhotoOutput()
-  
-  lazy var backDevice: AVCaptureDevice? = { return AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices.first }()
-  lazy var frontDevice: AVCaptureDevice? = { return AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .front).devices.first }()
-   var zoomFactor: CGFloat = 1.0
-  
-  var visionHandler: (VNRequest, Error?) -> Void = { request, error in
-    guard let results = request.results?.first as? VNDetectedObjectObservation else { return }
-    debugPrint("following tracked object at: ", results.boundingBox)
-  }
-  
-  let album = CustomPhotoAlbum.sharedInstance
-  let subscriptionManager = SubscriptionManager.shared
-  
-  var semaphore = DispatchSemaphore(value: 1)
   var userImageLock = false {
     didSet {
       if userImageLock {
@@ -78,101 +38,58 @@ class ViewController: UIViewController {
       }
     }
   }
+  var imageTouchOffset: CGPoint?
+  var isFront = false
+  var writeOverTen = false //is able to store > 300
   
+  var testLayovers = false //forces first time layover experience
+  
+  var currentOrientation: UIDeviceOrientation = .portrait
+  
+  override open var supportedInterfaceOrientations: UIInterfaceOrientationMask {return .portrait }
+  override open var shouldAutorotate: Bool { return false }
+  override open var prefersStatusBarHidden: Bool { return true }
+  
+  let deviceQueue = DispatchQueue(label: "moe.camera.device", autoreleaseFrequency: .workItem)
+  let videoBufferQueue = DispatchQueue(label: "moe.camera.buffer", autoreleaseFrequency: .workItem)
+  
+  public var captureSession = AVCaptureSession()
+  public var captureOutput = AVCaptureVideoDataOutput()
+  public var photoOutput = AVCapturePhotoOutput()
+  
+  lazy var backDevice: AVCaptureDevice? = { return AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .back).devices.first }()
+  lazy var frontDevice: AVCaptureDevice? = { return AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .front).devices.first }()
+  
+  let album = CustomPhotoAlbum.sharedInstance
+  let subscriptionManager = SubscriptionManager.shared
+  
+  var semaphore = DispatchSemaphore(value: 1)
+  
+  var zoomFactor: CGFloat = 1.0
   var rectOutline: CGRect?
   var sizeWidth = CGFloat(0)
   var sizeHeight = CGFloat(0)
   var frameSize: CGSize? = nil
   
   var previewLayer: AVCaptureVideoPreviewLayer?
-  
-  var trackingView: TrackingView? {
-    for aView in view.subviews {
-      if aView is TrackingView {
-        return aView as? TrackingView
-      }
-    }
-    let temp = TrackingView(frame: CGRect.zero)
-    temp.layer.borderColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.6).cgColor
-    temp.layer.borderWidth = 3.0
-    view.addSubview(temp)
-    return temp
+  /*
+  var visionHandler: (VNRequest, Error?) -> Void = { request, error in
+    guard let results = request.results?.first as? VNDetectedObjectObservation else { return }
+    debugPrint("following tracked object at: ", results.boundingBox)
   }
+  */
   
   override func viewDidLoad() {
     super.viewDidLoad()
     forcePortrait()
     NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
-    sizeWidth = view.frame.width
-    sizeHeight = view.frame.height
-    let pangr = UIPanGestureRecognizer(target: self, action: #selector(handlePan(gr:)))
-    view.addGestureRecognizer(pangr)
     SKPaymentQueue.default().add(self)
-    let launches = UserDefaults.standard.integer(forKey: "launches")
-    guard launches > 1 && !testLayovers else {
-      guard launches == 1 || testLayovers else { return }
-      setFirstTimeLayovers()
-      return
-    }
-    guard launches % 25 == 0 else { return }
-    SKStoreReviewController.requestReview()
-  }
-  
-  @objc func orientationChanged() {
-    currentOrientation = UIDevice.current.orientation
-    var transform = CGAffineTransform.identity
-    switch currentOrientation {
-    case .portrait:
-      break
-    case .landscapeRight:
-      transform = CGAffineTransform(rotationAngle: -.pi/2)
-      break
-    case .landscapeLeft:
-      transform = CGAffineTransform(rotationAngle: .pi/2)
-    default:
-      break
-    }
-    UIView.animate(withDuration: 0.45) {
-      self.previewImageView.transform = transform
-      self.flipButton.transform = transform
-      self.previewImageView.transform = transform
-      self.topProButton.transform = transform
-      self.previousUserImageView.transform = transform
-    }
   }
   
   override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
-    currentOrientation = .portrait
-    topProButton.layer.cornerRadius = topProButton.frame.height/2
-    previousUserImageView.layer.cornerRadius = previousUserImageView.frame.height/2
-    flipButton.layer.cornerRadius = flipButton.frame.height/2
-    flipButton.layer.borderColor = UIColor.white.cgColor
-    flipButton.layer.borderWidth = 2.0
-    previousUserImageView.layer.borderColor = UIColor.white.cgColor
-    previousUserImageView.layer.borderWidth = 2.0
-    previousUserImageView.isHidden = previousUserImageView.image == nil
-    topProButton.layer.borderColor = UIColor.white.cgColor
-    topProButton.layer.borderWidth = 2.0
-    previewImageView.layer.shadowColor = UIColor.black.cgColor
-    previewImageView.layer.shadowOffset = CGSize(width: 0, height: 0)
-    previewImageView.layer.shadowOpacity = 0.55
-//    previewImageView.layer.borderColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.6).cgColor
-//    previewImageView.layer.borderWidth = 3.0
-    trackingView?.frame = CGRect(x: topProButton.center.x - 40, y: view.center.y - 120, width: 80, height: 80)
-    rectOutline = trackingView?.frame
-    imageViewSet: if album.auth == PHAuthorizationStatus.authorized  {
-      guard album.assetCollection != nil else { break imageViewSet }
-      guard let lastAsset = PHAsset.fetchAssets(in: album.assetCollection!, options: nil).lastObject else { return }
-      fetchImage(asset: lastAsset) { (image) in
-        self.previousUserImageView.image = image
-      }
-    }
+    detailLayout()
     start()
-  }
-  
-  @IBAction func previousImageTapped(_ sender: UITapGestureRecognizer) {
-    UIApplication.shared.open(URL(string:"photos-redirect://")!)
   }
   
   @IBAction func focusTap(_ tap: UITapGestureRecognizer) {
@@ -195,7 +112,6 @@ class ViewController: UIViewController {
       print(error)
     }
   }
-  
   
   @IBAction func pinchToZoomObserved(_ pinch: UIPinchGestureRecognizer) {
     guard let device = isFront ? frontDevice : backDevice else { return }
@@ -243,8 +159,9 @@ class ViewController: UIViewController {
     
     captureSession.commitConfiguration()
     
-    trackingView?.frame = CGRect(x: topProButton.center.x - 110, y: view.center.y - 190, width: 220, height: 220)
+    trackingView?.frame = CGRect(x: topProButton.center.x - 40, y: view.center.y - 120, width: 80, height: 80)
     rectOutline = trackingView?.frame
+    userImageLock = false
   }
   
   @IBAction func imageViewPanned(_ sender: UIPanGestureRecognizer) {
@@ -291,42 +208,14 @@ class ViewController: UIViewController {
     userImageLock.toggle()
     guard userImageLock else { return }
     
-    let albumCount = album.count()
-    
-    guard albumCount < 300 || writeOverTen else {
+    guard album.count() < 300 || writeOverTen else {
       album.removeEldest()
       return
     }
-    //SKPaymentQueue.default().restoreCompletedTransactions()
     
+    animatePreviewCapture()
     
-    let animateImageView = UIImageView(frame: previewImageView.frame)
-    animateImageView.image = previewImageView.image
-    animateImageView.alpha = 0.6
-    animateImageView.contentMode = UIView.ContentMode.scaleAspectFit
-    animateImageView.layer.cornerRadius = previewImageView.frame.height/2
-    animateImageView.clipsToBounds = true
-    animateImageView.layer.borderColor = UIColor.white.cgColor
-    animateImageView.layer.borderWidth = 2.0
-    view.addSubview(animateImageView)
-    view.bringSubviewToFront(animateImageView)
-    
-    UIView.animate(withDuration: 0.65, delay: 0, options: .curveEaseIn, animations: {
-      animateImageView.layer.cornerRadius = self.previousUserImageView.frame.height/2
-      animateImageView.frame = self.previousUserImageView.frame
-    }) { (completed) in
-      guard completed else { return }
-      self.previousUserImageView.image = animateImageView.image
-      animateImageView.removeFromSuperview()
-      if self.previousUserImageView.image == nil {
-        // do first time gallery thing
-        // something about it being inside an album in photos
-        // offer choice to go to settings and change
-        self.viewImage()
-      }
-      if self.previousUserImageView.isHidden { self.previousUserImageView.isHidden = false }
-    }
-    
+    // from buffer; faster, but smaller
     func writeImg() {
       guard let img =  previewImageView.image else { return }
       //UIImageWriteToSavedPhotosAlbum(img, nil, nil, nil)
@@ -334,21 +223,21 @@ class ViewController: UIViewController {
       album.save(image: img)
     }
     
+    // photoOutput; slower, bigger 12mp
     func takeImg() {
       let settings = AVCapturePhotoSettings()
       settings.isHighResolutionPhotoEnabled = true
       photoOutput.capturePhoto(with: settings, delegate: self)
     }
 
-    
     takeImg()
   }
   
-  @objc func handlePan(gr: UIPanGestureRecognizer) {
+  @IBAction func handleTrackerViewPan(_ sender: UIPanGestureRecognizer) {
     guard let tracker = trackingView else { return }
     
     func adjust() {
-      let location = gr.location(in: view)
+      let location = sender.location(in: view)
       var x = tracker.startingLocation.x
       var width = location.x - tracker.startingLocation.x
       if tracker.startingLocation.x > location.x {
@@ -370,18 +259,16 @@ class ViewController: UIViewController {
     func reset() {
       rectOutline = nil
       tracker.frame = CGRect.zero
-      //view.bringSubviewToFront(tracker)
       UIView.animate(withDuration: 0.35, delay: 0, options: .curveEaseInOut, animations: {
         self.previewImageView.layoutIfNeeded()
       }) { (completed) in
         guard completed else { return }
       }
-      //view.layoutIfNeeded()
     }
-    switch gr.state {
+    switch sender.state {
     case .began:
       reset()
-      tracker.startingLocation = gr.location(in: view)
+      tracker.startingLocation = sender.location(in: view)
       guard userImageLock else { return }
       userImageLock = false
     case .changed:
@@ -389,17 +276,6 @@ class ViewController: UIViewController {
     case .ended:
       rectOutline = tracker.frame
       view.insertSubview(tracker, at: 1)
-      /*
-      try? device?.lockForConfiguration()
-      defer { device?.unlockForConfiguration() }
-      guard let frame = frameSize else { return }
-      guard let metaRect = previewLayer?.metadataOutputRectConverted(fromLayerRect: rectOutline!) else { return }
-      let outputRect = captureOutput.outputRectConverted(fromMetadataOutputRect: metaRect)
-      let highlightedArea = outputRect.applying(CGAffineTransform(translationX: 0, y: -frame.height)).applying(CGAffineTransform(scaleX: 1, y: -1))
-      let devicePoint = CGPoint(x: highlightedArea.midX, y: highlightedArea.midY)
-      device?.focusPointOfInterest = devicePoint
-      device?.exposurePointOfInterest = devicePoint
-      */
     case .cancelled:
       reset()
     default:
@@ -407,11 +283,23 @@ class ViewController: UIViewController {
     }
   }
   
+  @IBAction func previousImageTapped(_ sender: UITapGestureRecognizer) { UIApplication.shared.open(URL(string:"photos-redirect://")!) }
+
   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-    if let viewImageVC = segue.destination as? ViewImageViewController { viewImageVC.image = previewImageView.image }
-    guard let proOfferVC = segue.destination as? ProOfferViewController else { return }
-    proOfferVC.product = subscriptionManager.products.last
-    proOfferVC.album = album
+    if let viewImageVC = segue.destination as? ViewImageViewController {
+      viewImageVC.image = previewImageView.image
+      viewImageVC.saved = PHPhotoLibrary.authorizationStatus() == .authorized
+    }
+    
+    if let proOfferVC = segue.destination as? ProOfferViewController {
+      proOfferVC.product = subscriptionManager.products.last
+      proOfferVC.album = album
+    }
+  }
+  
+  deinit {
+    NotificationCenter.default.removeObserver(self)
+    SKPaymentQueue.default().remove(self)
   }
 }
 

@@ -11,7 +11,7 @@ import AVFoundation
 import UIKit
 import Photos
 
-extension ViewController: AVCapturePhotoCaptureDelegate {
+extension MagnificationViewController: AVCapturePhotoCaptureDelegate {
   func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
     guard let img = photo.cgImageRepresentation()?.takeUnretainedValue() else { return }
     let ci = CIImage(cgImage: img)

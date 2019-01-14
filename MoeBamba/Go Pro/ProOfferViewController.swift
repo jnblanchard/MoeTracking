@@ -27,6 +27,7 @@ class ProOfferViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
     forcePortrait()
+    SKPaymentQueue.default().add(self)
   }
   
   override func viewWillAppear(_ animated: Bool) {
@@ -46,5 +47,9 @@ class ProOfferViewController: UIViewController {
     guard let firstProduct = product else { return }
     let payment = SKPayment(product: firstProduct)
     SKPaymentQueue.default().add(payment)
+  }
+  
+  deinit {
+    SKPaymentQueue.default().remove(self)
   }
 }

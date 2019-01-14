@@ -32,9 +32,7 @@
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "404"
-            endingLineNumber = "404"
-            landmarkName = "handlePan(gr:)"
-            landmarkType = "7">
+            endingLineNumber = "404">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -44,7 +42,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoeBamba/Mag/CameraPhoto.swift"
-            timestampString = "569098026.430953"
+            timestampString = "569181543.010844"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "24"
@@ -60,7 +58,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoeBamba/Mag/CameraPhoto.swift"
-            timestampString = "569098026.431015"
+            timestampString = "569181543.010947"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
@@ -76,7 +74,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MoeBamba/Mag/CameraPhoto.swift"
-            timestampString = "569098026.43107"
+            timestampString = "569181543.011022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "28"

@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		043A302921BAE52C009571EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A302821BAE52C009571EE /* AppDelegate.swift */; };
-		043A302B21BAE52C009571EE /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A302A21BAE52C009571EE /* ViewController.swift */; };
+		043A302B21BAE52C009571EE /* MagnificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A302A21BAE52C009571EE /* MagnificationViewController.swift */; };
 		043A302E21BAE52C009571EE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043A302C21BAE52C009571EE /* Main.storyboard */; };
 		043A303021BAE52F009571EE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 043A302F21BAE52F009571EE /* Assets.xcassets */; };
 		043A303321BAE52F009571EE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 043A303121BAE52F009571EE /* LaunchScreen.storyboard */; };
@@ -22,7 +22,6 @@
 		0444C78E21E5642000FFD260 /* ProOffer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0444C78D21E5642000FFD260 /* ProOffer.storyboard */; };
 		0444C79021E5677700FFD260 /* ProOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444C78F21E5677700FFD260 /* ProOfferViewController.swift */; };
 		0444C79221E66F9200FFD260 /* LayoverExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444C79121E66F9200FFD260 /* LayoverExperience.swift */; };
-		044B58CD21C7327500B0FEB5 /* CommonTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 044B58CC21C7327500B0FEB5 /* CommonTypes.swift */; };
 		04A95ACB21E7A9BB00DA3C15 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */; };
 		04A95ACE21E9792300DA3C15 /* NoCameraAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */; };
 		04A95AD021E9796A00DA3C15 /* NoCameraAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */; };
@@ -30,6 +29,7 @@
 		04A95AD521E992B300DA3C15 /* ViewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95AD421E992B300DA3C15 /* ViewImageViewController.swift */; };
 		04A95AD721EA4D2400DA3C15 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95AD621EA4D2400DA3C15 /* ImageScrollView.swift */; };
 		04DA222221EBBB540054223C /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA222121EBBB540054223C /* ViewControllerExtensions.swift */; };
+		04DA222421ECF5AB0054223C /* CameraAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA222321ECF5AB0054223C /* CameraAnimations.swift */; };
 		04F7FA3C21C825F7002E5533 /* RectangleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */; };
 		04F7FA3E21C87A7F002E5533 /* PhotoAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */; };
 /* End PBXBuildFile section */
@@ -54,7 +54,7 @@
 /* Begin PBXFileReference section */
 		043A302521BAE52C009571EE /* MoeBamba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoeBamba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		043A302821BAE52C009571EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		043A302A21BAE52C009571EE /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		043A302A21BAE52C009571EE /* MagnificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MagnificationViewController.swift; sourceTree = "<group>"; };
 		043A302D21BAE52C009571EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		043A302F21BAE52F009571EE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		043A303221BAE52F009571EE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -73,7 +73,6 @@
 		0444C78D21E5642000FFD260 /* ProOffer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProOffer.storyboard; sourceTree = "<group>"; };
 		0444C78F21E5677700FFD260 /* ProOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProOfferViewController.swift; sourceTree = "<group>"; };
 		0444C79121E66F9200FFD260 /* LayoverExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoverExperience.swift; sourceTree = "<group>"; };
-		044B58CC21C7327500B0FEB5 /* CommonTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonTypes.swift; sourceTree = "<group>"; };
 		04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoCameraAuth.storyboard; sourceTree = "<group>"; };
 		04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCameraAuthViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +80,7 @@
 		04A95AD421E992B300DA3C15 /* ViewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewImageViewController.swift; sourceTree = "<group>"; };
 		04A95AD621EA4D2400DA3C15 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
 		04DA222121EBBB540054223C /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
+		04DA222321ECF5AB0054223C /* CameraAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnimations.swift; sourceTree = "<group>"; };
 		04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleExtensions.swift; sourceTree = "<group>"; };
 		04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoAlbum.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -136,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				043A302821BAE52C009571EE /* AppDelegate.swift */,
+				0444C78A21E4178600FFD260 /* SubscriptionManager.swift */,
+				04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */,
 				0444C78821E3C71B00FFD260 /* Mag */,
 				04A95AD121E9928800DA3C15 /* View Image */,
 				04A95ACC21E977A400DA3C15 /* No Camera Auth */,
@@ -170,15 +172,13 @@
 			isa = PBXGroup;
 			children = (
 				043A302C21BAE52C009571EE /* Main.storyboard */,
-				043A305821BB05A1009571EE /* TrackingView.swift */,
-				043A302A21BAE52C009571EE /* ViewController.swift */,
-				0444C79121E66F9200FFD260 /* LayoverExperience.swift */,
-				0444C78A21E4178600FFD260 /* SubscriptionManager.swift */,
-				044B58CC21C7327500B0FEB5 /* CommonTypes.swift */,
-				04F7FA3D21C87A7F002E5533 /* PhotoAlbum.swift */,
+				043A302A21BAE52C009571EE /* MagnificationViewController.swift */,
+				043A305621BAE801009571EE /* CameraSetup.swift */,
 				0444C78621E3C6CC00FFD260 /* CameraOutput.swift */,
 				0444C78421E3C68B00FFD260 /* CameraPhoto.swift */,
-				043A305621BAE801009571EE /* CameraSetup.swift */,
+				04DA222321ECF5AB0054223C /* CameraAnimations.swift */,
+				0444C79121E66F9200FFD260 /* LayoverExperience.swift */,
+				043A305821BB05A1009571EE /* TrackingView.swift */,
 			);
 			path = Mag;
 			sourceTree = "<group>";
@@ -369,6 +369,7 @@
 			files = (
 				0444C79221E66F9200FFD260 /* LayoverExperience.swift in Sources */,
 				0444C78B21E4178600FFD260 /* SubscriptionManager.swift in Sources */,
+				04DA222421ECF5AB0054223C /* CameraAnimations.swift in Sources */,
 				04A95AD021E9796A00DA3C15 /* NoCameraAuthViewController.swift in Sources */,
 				04A95AD521E992B300DA3C15 /* ViewImageViewController.swift in Sources */,
 				0444C79021E5677700FFD260 /* ProOfferViewController.swift in Sources */,
@@ -376,9 +377,8 @@
 				0444C78521E3C68B00FFD260 /* CameraPhoto.swift in Sources */,
 				04F7FA3C21C825F7002E5533 /* RectangleExtensions.swift in Sources */,
 				04DA222221EBBB540054223C /* ViewControllerExtensions.swift in Sources */,
-				044B58CD21C7327500B0FEB5 /* CommonTypes.swift in Sources */,
 				04F7FA3E21C87A7F002E5533 /* PhotoAlbum.swift in Sources */,
-				043A302B21BAE52C009571EE /* ViewController.swift in Sources */,
+				043A302B21BAE52C009571EE /* MagnificationViewController.swift in Sources */,
 				043A302921BAE52C009571EE /* AppDelegate.swift in Sources */,
 				04A95AD721EA4D2400DA3C15 /* ImageScrollView.swift in Sources */,
 				043A305921BB05A1009571EE /* TrackingView.swift in Sources */,

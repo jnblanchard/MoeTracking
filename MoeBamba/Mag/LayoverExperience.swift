@@ -5,11 +5,23 @@
 //  Created by John N Blanchard on 1/9/19.
 //  Copyright © 2019 JNB. All rights reserved.
 //
-
-import Foundation
 import UIKit
+import StoreKit
 
-extension ViewController {
+extension MagnificationViewController {
+  
+  var trackingView: TrackingView? {
+    for aView in view.subviews {
+      if aView is TrackingView {
+        return aView as? TrackingView
+      }
+    }
+    let temp = TrackingView(frame: CGRect.zero)
+    temp.layer.borderColor = UIColor(displayP3Red: 1, green: 1, blue: 1, alpha: 0.6).cgColor
+    temp.layer.borderWidth = 3.0
+    view.addSubview(temp)
+    return temp
+  }
   
   func showNoCameraCover() {
     
@@ -21,7 +33,6 @@ extension ViewController {
   
   func createViewImageButton() -> UIButton {
     let coverButton = UIButton(frame: previewImageView.frame)
-//    coverButton.setTitleColor(UIColor.white, for: .normal)
     coverButton.clipsToBounds = true
     coverButton.backgroundColor = UIColor(white: 0, alpha: 0.4)
     coverButton.setAttributedTitle(NSAttributedString(string: "Tap to View", attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 19, weight: .bold), NSAttributedString.Key.foregroundColor: UIColor.white]), for: .normal)
@@ -71,4 +82,14 @@ extension ViewController {
     cover.removeFromSuperview()
   }
   
+  func requestReviewFor(attempt multiple: Int) {
+    let launches = UserDefaults.standard.integer(forKey: "launches")
+    guard launches > 1 && !testLayovers else {
+      guard launches == 1 || testLayovers else { return }
+      setFirstTimeLayovers()
+      return
+    }
+    guard launches % multiple == 0 else { return }
+    SKStoreReviewController.requestReview()
+  }
 }

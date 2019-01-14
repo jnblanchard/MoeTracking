@@ -11,7 +11,8 @@ import AVFoundation
 import UIKit
 
 
-extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension MagnificationViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+  
   func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
     semaphore.wait()
     defer { semaphore.signal() }

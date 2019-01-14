@@ -37,7 +37,7 @@
                                 </connections>
                             </button>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0IE-4G-pP3">
-                                <rect key="frame" x="16" y="1124" width="736" height="240"/>
+                                <rect key="frame" x="16" y="1384" width="736" height="240"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Magnification Deletion Warning" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.69999999999999996" translatesAutoresizingMaskIntoConstraints="NO" id="Obs-RF-6JP">
                                         <rect key="frame" x="10" y="5" width="716" height="23"/>
@@ -150,7 +150,7 @@
                             <constraint firstItem="Hpq-g4-oaD" firstAttribute="leading" secondItem="Dn2-ZO-fZ1" secondAttribute="leading" id="aQ9-UH-Xad"/>
                             <constraint firstItem="0IE-4G-pP3" firstAttribute="leading" secondItem="Dn2-ZO-fZ1" secondAttribute="leading" constant="16" id="c56-2z-hjD"/>
                             <constraint firstItem="Dn2-ZO-fZ1" firstAttribute="trailing" secondItem="0IE-4G-pP3" secondAttribute="trailing" constant="16" id="hAs-pR-bio"/>
-                            <constraint firstItem="Dn2-ZO-fZ1" firstAttribute="bottom" secondItem="0IE-4G-pP3" secondAttribute="bottom" constant="-340" id="waq-M4-RCu"/>
+                            <constraint firstItem="Dn2-ZO-fZ1" firstAttribute="bottom" secondItem="0IE-4G-pP3" secondAttribute="bottom" constant="-600" id="waq-M4-RCu"/>
                             <constraint firstItem="Hpq-g4-oaD" firstAttribute="bottom" secondItem="Dn2-ZO-fZ1" secondAttribute="bottom" id="xQB-oz-f0s"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Dn2-ZO-fZ1"/>
