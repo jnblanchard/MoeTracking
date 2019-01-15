@@ -3,109 +3,109 @@
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "natMagBig40x40.png",
+      "filename" : "natMag40x40.png",
       "scale" : "2x"
     },
     {
       "size" : "20x20",
       "idiom" : "iphone",
-      "filename" : "natMagBig60x60.png",
+      "filename" : "natMag60x60.png",
       "scale" : "3x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "natMagBig58x58.png",
+      "filename" : "natMag58x58.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "iphone",
-      "filename" : "natMagBig87x87.png",
+      "filename" : "natMag87x87.png",
       "scale" : "3x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "natMagBig80x80.png",
+      "filename" : "natMag80x80.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "iphone",
-      "filename" : "natMagBig120x120.png",
+      "filename" : "natMag120x120.png",
       "scale" : "3x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "natMagBig120x120-1.png",
+      "filename" : "natMag120x120-1.png",
       "scale" : "2x"
     },
     {
       "size" : "60x60",
       "idiom" : "iphone",
-      "filename" : "natMagBig180x180.png",
+      "filename" : "natMag180x180.png",
       "scale" : "3x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "natMagBig20x20.png",
+      "filename" : "natMag20x20.png",
       "scale" : "1x"
     },
     {
       "size" : "20x20",
       "idiom" : "ipad",
-      "filename" : "natMagBig40x40-1.png",
+      "filename" : "natMag40x40-1.png",
       "scale" : "2x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "natMagBig29x29.png",
+      "filename" : "natMag29x29.png",
       "scale" : "1x"
     },
     {
       "size" : "29x29",
       "idiom" : "ipad",
-      "filename" : "natMagBig58x58-1.png",
+      "filename" : "natMag58x58-1.png",
       "scale" : "2x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "natMagBig40x40-2.png",
+      "filename" : "natMag40x40-2.png",
       "scale" : "1x"
     },
     {
       "size" : "40x40",
       "idiom" : "ipad",
-      "filename" : "natMagBig80x80-1.png",
+      "filename" : "natMag80x80-1.png",
       "scale" : "2x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "natMagBig76x76.png",
+      "filename" : "natMag76x76.png",
       "scale" : "1x"
     },
     {
       "size" : "76x76",
       "idiom" : "ipad",
-      "filename" : "natMagBig152x152.png",
+      "filename" : "natMag152x152.png",
       "scale" : "2x"
     },
     {
       "size" : "83.5x83.5",
       "idiom" : "ipad",
-      "filename" : "natMagBig167x167.png",
+      "filename" : "natMag167x167.png",
       "scale" : "2x"
     },
     {
       "size" : "1024x1024",
       "idiom" : "ios-marketing",
-      "filename" : "natMagBig1024x1024.png",
+      "filename" : "natMag1024x1024.png",
       "scale" : "1x"
     }
   ],
