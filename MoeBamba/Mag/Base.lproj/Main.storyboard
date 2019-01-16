@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LaunchApp" translatesAutoresizingMaskIntoConstraints="NO" id="oyl-Ul-smT">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <rect key="frame" x="0.0" y="64" width="414" height="832"/>
                             </imageView>
                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cbR-42-V3G">
                                 <rect key="frame" x="331" y="68.666666666666671" width="63" height="63.333333333333329"/>
@@ -84,14 +84,14 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="7hk-vi-gmF" secondAttribute="bottom" constant="15" id="bAi-GT-Hsp"/>
                             <constraint firstItem="7hk-vi-gmF" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="25:64" id="ey6-F5-DZ0"/>
                             <constraint firstItem="TEd-Qv-wxY" firstAttribute="bottom" secondItem="cbR-42-V3G" secondAttribute="bottom" id="feJ-k2-XpI"/>
-                            <constraint firstItem="oyl-Ul-smT" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="gM6-Qv-Nfs"/>
+                            <constraint firstItem="oyl-Ul-smT" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="gM6-Qv-Nfs"/>
                             <constraint firstItem="TEd-Qv-wxY" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="5:71" id="h3n-V3-buQ"/>
                             <constraint firstItem="TEd-Qv-wxY" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="jzr-9I-SXm"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="cbR-42-V3G" secondAttribute="trailing" constant="20" id="oWE-mf-MwP"/>
                             <constraint firstItem="FhM-02-6eJ" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="11:96" id="s7a-WM-Rx7"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="oyl-Ul-smT" secondAttribute="trailing" id="usk-4n-qjo"/>
-                            <constraint firstItem="oyl-Ul-smT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="wjO-xC-DCb"/>
-                            <constraint firstItem="cbR-42-V3G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FhM-02-6eJ" secondAttribute="trailing" constant="65" id="zm0-07-Nax"/>
+                            <constraint firstItem="cbR-42-V3G" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="FhM-02-6eJ" secondAttribute="trailing" constant="8" symbolic="YES" id="uua-nX-h6T"/>
+                            <constraint firstItem="oyl-Ul-smT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="wjO-xC-DCb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
@@ -102,6 +102,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="c09-T6-Z8f"/>
                     <connections>
+                        <outlet property="backgroundMagImage" destination="oyl-Ul-smT" id="wgV-p6-svC"/>
                         <outlet property="flipButton" destination="cbR-42-V3G" id="cst-Rn-B6f"/>
                         <outlet property="previewImageView" destination="7hk-vi-gmF" id="edF-0u-Sxj"/>
                         <outlet property="previousUserImageView" destination="TEd-Qv-wxY" id="F7g-AN-OoS"/>

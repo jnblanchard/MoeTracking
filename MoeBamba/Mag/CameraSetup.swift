@@ -53,7 +53,9 @@ extension MagnificationViewController {
       DispatchQueue.main.async {
         self.previewLayer?.frame = self.view.bounds
         self.view.layer.addSublayer(self.previewLayer!)
-        for temp in self.view.subviews { self.view.bringSubviewToFront(temp) }
+        for temp in self.view.subviews {
+          if temp == self.backgroundMagImage { continue }
+          self.view.bringSubviewToFront(temp) }
       }
       
       guard !captureSession.isRunning else { return }

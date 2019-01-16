@@ -13,6 +13,7 @@ import Photos
 import StoreKit
 
 class MagnificationViewController: UIViewController {
+  @IBOutlet weak var backgroundMagImage: UIImageView!
   @IBOutlet weak var flipButton: UIButton!
   @IBOutlet weak var topProButton: UIButton!
   @IBOutlet weak var previousUserImageView: UIImageView!
@@ -275,7 +276,7 @@ class MagnificationViewController: UIViewController {
       adjust()
     case .ended:
       rectOutline = tracker.frame
-      view.insertSubview(tracker, at: 1)
+      view.insertSubview(tracker, at: 2)
     case .cancelled:
       reset()
     default:
