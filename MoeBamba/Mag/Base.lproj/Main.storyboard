@@ -45,7 +45,7 @@
                                     <outletCollection property="gestureRecognizers" destination="S78-sS-Cn4" appends="YES" id="rfG-ZT-6gr"/>
                                 </connections>
                             </imageView>
-                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhM-02-6eJ">
+                            <button hidden="YES" opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FhM-02-6eJ">
                                 <rect key="frame" x="155.66666666666666" y="49.000000000000007" width="102.66666666666666" height="102.66666666666669"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.64027718320000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>

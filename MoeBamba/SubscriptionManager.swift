@@ -44,6 +44,7 @@ extension ProOfferViewController: SKPaymentTransactionObserver {
   }
 }
 
+
 extension MagnificationViewController: SKPaymentTransactionObserver {
   public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
     guard let firstTransaction = transactions.last?.original else { return }
@@ -58,6 +59,6 @@ extension MagnificationViewController: SKPaymentTransactionObserver {
     default:
       break
     }
-    topProButton.isHidden = writeOverTen
+    topProButton.isHidden = true
   }
 }

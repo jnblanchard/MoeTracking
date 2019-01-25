@@ -22,12 +22,20 @@
 		0444C78E21E5642000FFD260 /* ProOffer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0444C78D21E5642000FFD260 /* ProOffer.storyboard */; };
 		0444C79021E5677700FFD260 /* ProOfferViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444C78F21E5677700FFD260 /* ProOfferViewController.swift */; };
 		0444C79221E66F9200FFD260 /* LayoverExperience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0444C79121E66F9200FFD260 /* LayoverExperience.swift */; };
-		04A95ACB21E7A9BB00DA3C15 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */; };
 		04A95ACE21E9792300DA3C15 /* NoCameraAuth.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */; };
 		04A95AD021E9796A00DA3C15 /* NoCameraAuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */; };
 		04A95AD321E9929E00DA3C15 /* ViewImage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04A95AD221E9929E00DA3C15 /* ViewImage.storyboard */; };
 		04A95AD521E992B300DA3C15 /* ViewImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95AD421E992B300DA3C15 /* ViewImageViewController.swift */; };
 		04A95AD721EA4D2400DA3C15 /* ImageScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04A95AD621EA4D2400DA3C15 /* ImageScrollView.swift */; };
+		04D920AF21FB722000519422 /* Messages.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D920AE21FB722000519422 /* Messages.framework */; };
+		04D920B221FB722000519422 /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D920B121FB722000519422 /* MessagesViewController.swift */; };
+		04D920B521FB722000519422 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04D920B321FB722000519422 /* MainInterface.storyboard */; };
+		04D920B721FB722200519422 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04D920B621FB722200519422 /* Assets.xcassets */; };
+		04D920BB21FB722200519422 /* MagnificationExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 04D920AD21FB722000519422 /* MagnificationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		04D920C121FB752700519422 /* CameraStartup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D920C021FB752700519422 /* CameraStartup.swift */; };
+		04D920C321FB75B900519422 /* CameraMessagesOutput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D920C221FB75B900519422 /* CameraMessagesOutput.swift */; };
+		04D920C621FBB66F00519422 /* OutlineSetters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04D920C521FBB66F00519422 /* OutlineSetters.swift */; };
+		04D920C721FBB67F00519422 /* TrackingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043A305821BB05A1009571EE /* TrackingView.swift */; };
 		04DA222221EBBB540054223C /* ViewControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA222121EBBB540054223C /* ViewControllerExtensions.swift */; };
 		04DA222421ECF5AB0054223C /* CameraAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04DA222321ECF5AB0054223C /* CameraAnimations.swift */; };
 		04F7FA3C21C825F7002E5533 /* RectangleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */; };
@@ -49,7 +57,28 @@
 			remoteGlobalIDString = 043A302421BAE52C009571EE;
 			remoteInfo = MoeBamba;
 		};
+		04D920B921FB722200519422 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 043A301D21BAE52C009571EE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 04D920AC21FB722000519422;
+			remoteInfo = MagnificationExtension;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		04D920BF21FB722200519422 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				04D920BB21FB722200519422 /* MagnificationExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		043A302521BAE52C009571EE /* MoeBamba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoeBamba.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,12 +102,20 @@
 		0444C78D21E5642000FFD260 /* ProOffer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ProOffer.storyboard; sourceTree = "<group>"; };
 		0444C78F21E5677700FFD260 /* ProOfferViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProOfferViewController.swift; sourceTree = "<group>"; };
 		0444C79121E66F9200FFD260 /* LayoverExperience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoverExperience.swift; sourceTree = "<group>"; };
-		04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		04A95ACD21E9792300DA3C15 /* NoCameraAuth.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = NoCameraAuth.storyboard; sourceTree = "<group>"; };
 		04A95ACF21E9796A00DA3C15 /* NoCameraAuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoCameraAuthViewController.swift; sourceTree = "<group>"; };
 		04A95AD221E9929E00DA3C15 /* ViewImage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = ViewImage.storyboard; sourceTree = "<group>"; };
 		04A95AD421E992B300DA3C15 /* ViewImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewImageViewController.swift; sourceTree = "<group>"; };
 		04A95AD621EA4D2400DA3C15 /* ImageScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageScrollView.swift; sourceTree = "<group>"; };
+		04D920AD21FB722000519422 /* MagnificationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = MagnificationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		04D920AE21FB722000519422 /* Messages.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Messages.framework; path = System/Library/Frameworks/Messages.framework; sourceTree = SDKROOT; };
+		04D920B121FB722000519422 /* MessagesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		04D920B421FB722000519422 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/MainInterface.storyboard; sourceTree = "<group>"; };
+		04D920B621FB722200519422 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		04D920B821FB722200519422 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04D920C021FB752700519422 /* CameraStartup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraStartup.swift; sourceTree = "<group>"; };
+		04D920C221FB75B900519422 /* CameraMessagesOutput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraMessagesOutput.swift; sourceTree = "<group>"; };
+		04D920C521FBB66F00519422 /* OutlineSetters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineSetters.swift; sourceTree = "<group>"; };
 		04DA222121EBBB540054223C /* ViewControllerExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerExtensions.swift; sourceTree = "<group>"; };
 		04DA222321ECF5AB0054223C /* CameraAnimations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraAnimations.swift; sourceTree = "<group>"; };
 		04F7FA3B21C825F7002E5533 /* RectangleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RectangleExtensions.swift; sourceTree = "<group>"; };
@@ -90,7 +127,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				04A95ACB21E7A9BB00DA3C15 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,6 +144,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04D920AA21FB722000519422 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D920AF21FB722000519422 /* Messages.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -117,6 +161,7 @@
 				043A302721BAE52C009571EE /* MoeBamba */,
 				043A303C21BAE530009571EE /* MoeBambaTests */,
 				043A304721BAE530009571EE /* MoeBambaUITests */,
+				04D920B021FB722000519422 /* MagnificationExtension */,
 				043A302621BAE52C009571EE /* Products */,
 				04A95AC921E7A9BB00DA3C15 /* Frameworks */,
 			);
@@ -128,6 +173,7 @@
 				043A302521BAE52C009571EE /* MoeBamba.app */,
 				043A303921BAE52F009571EE /* MoeBambaTests.xctest */,
 				043A304421BAE530009571EE /* MoeBambaUITests.xctest */,
+				04D920AD21FB722000519422 /* MagnificationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -204,7 +250,7 @@
 		04A95AC921E7A9BB00DA3C15 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				04A95ACA21E7A9BB00DA3C15 /* StoreKit.framework */,
+				04D920AE21FB722000519422 /* Messages.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -228,6 +274,20 @@
 			path = "View Image";
 			sourceTree = "<group>";
 		};
+		04D920B021FB722000519422 /* MagnificationExtension */ = {
+			isa = PBXGroup;
+			children = (
+				04D920B121FB722000519422 /* MessagesViewController.swift */,
+				04D920C021FB752700519422 /* CameraStartup.swift */,
+				04D920C521FBB66F00519422 /* OutlineSetters.swift */,
+				04D920C221FB75B900519422 /* CameraMessagesOutput.swift */,
+				04D920B321FB722000519422 /* MainInterface.storyboard */,
+				04D920B621FB722200519422 /* Assets.xcassets */,
+				04D920B821FB722200519422 /* Info.plist */,
+			);
+			path = MagnificationExtension;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -238,10 +298,12 @@
 				043A302121BAE52C009571EE /* Sources */,
 				043A302221BAE52C009571EE /* Frameworks */,
 				043A302321BAE52C009571EE /* Resources */,
+				04D920BF21FB722200519422 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				04D920BA21FB722200519422 /* PBXTargetDependency */,
 			);
 			name = MoeBamba;
 			productName = MoeBamba;
@@ -284,6 +346,23 @@
 			productReference = 043A304421BAE530009571EE /* MoeBambaUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
+		04D920AC21FB722000519422 /* MagnificationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 04D920BC21FB722200519422 /* Build configuration list for PBXNativeTarget "MagnificationExtension" */;
+			buildPhases = (
+				04D920A921FB722000519422 /* Sources */,
+				04D920AA21FB722000519422 /* Frameworks */,
+				04D920AB21FB722000519422 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MagnificationExtension;
+			productName = MagnificationExtension;
+			productReference = 04D920AD21FB722000519422 /* MagnificationExtension.appex */;
+			productType = "com.apple.product-type.app-extension.messages";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -298,7 +377,7 @@
 						CreatedOnToolsVersion = 10.1;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -309,6 +388,9 @@
 					043A304321BAE530009571EE = {
 						CreatedOnToolsVersion = 10.1;
 						TestTargetID = 043A302421BAE52C009571EE;
+					};
+					04D920AC21FB722000519422 = {
+						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -328,6 +410,7 @@
 				043A302421BAE52C009571EE /* MoeBamba */,
 				043A303821BAE52F009571EE /* MoeBambaTests */,
 				043A304321BAE530009571EE /* MoeBambaUITests */,
+				04D920AC21FB722000519422 /* MagnificationExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -357,6 +440,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		04D920AB21FB722000519422 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D920B721FB722200519422 /* Assets.xcassets in Resources */,
+				04D920B521FB722000519422 /* MainInterface.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -402,6 +494,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		04D920A921FB722000519422 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				04D920C121FB752700519422 /* CameraStartup.swift in Sources */,
+				04D920C621FBB66F00519422 /* OutlineSetters.swift in Sources */,
+				04D920C721FBB67F00519422 /* TrackingView.swift in Sources */,
+				04D920C321FB75B900519422 /* CameraMessagesOutput.swift in Sources */,
+				04D920B221FB722000519422 /* MessagesViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -414,6 +518,11 @@
 			isa = PBXTargetDependency;
 			target = 043A302421BAE52C009571EE /* MoeBamba */;
 			targetProxy = 043A304521BAE530009571EE /* PBXContainerItemProxy */;
+		};
+		04D920BA21FB722200519422 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 04D920AC21FB722000519422 /* MagnificationExtension */;
+			targetProxy = 04D920B921FB722200519422 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -432,6 +541,14 @@
 				043A303221BAE52F009571EE /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+		04D920B321FB722000519422 /* MainInterface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				04D920B421FB722000519422 /* Base */,
+			);
+			name = MainInterface.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -556,11 +673,13 @@
 		043A304E21BAE530009571EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VAR7436X2W;
 				INFOPLIST_FILE = MoeBamba/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -576,11 +695,13 @@
 		043A304F21BAE530009571EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = VAR7436X2W;
 				INFOPLIST_FILE = MoeBamba/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -675,6 +796,48 @@
 			};
 			name = Release;
 		};
+		04D920BD21FB722200519422 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VAR7436X2W;
+				INFOPLIST_FILE = MagnificationExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBamba.MagnificationExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		04D920BE21FB722200519422 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "iMessage App Icon";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = VAR7436X2W;
+				INFOPLIST_FILE = MagnificationExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBamba.MagnificationExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -710,6 +873,15 @@
 			buildConfigurations = (
 				043A305421BAE530009571EE /* Debug */,
 				043A305521BAE530009571EE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		04D920BC21FB722200519422 /* Build configuration list for PBXNativeTarget "MagnificationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				04D920BD21FB722200519422 /* Debug */,
+				04D920BE21FB722200519422 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

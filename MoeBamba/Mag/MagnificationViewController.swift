@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 import Vision
 import Photos
-import StoreKit
+//import StoreKit
 
 class MagnificationViewController: UIViewController {
   @IBOutlet weak var backgroundMagImage: UIImageView!
@@ -62,7 +62,7 @@ class MagnificationViewController: UIViewController {
   lazy var frontDevice: AVCaptureDevice? = { return AVCaptureDevice.DiscoverySession(deviceTypes: [AVCaptureDevice.DeviceType.builtInWideAngleCamera], mediaType: AVMediaType.video, position: .front).devices.first }()
   
   let album = CustomPhotoAlbum.sharedInstance
-  let subscriptionManager = SubscriptionManager.shared
+  //let subscriptionManager = SubscriptionManager.shared
   
   var semaphore = DispatchSemaphore(value: 1)
   
@@ -84,7 +84,7 @@ class MagnificationViewController: UIViewController {
     super.viewDidLoad()
     forcePortrait()
     NotificationCenter.default.addObserver(self, selector: #selector(orientationChanged), name: UIDevice.orientationDidChangeNotification, object: nil)
-    SKPaymentQueue.default().add(self)
+    //SKPaymentQueue.default().add(self)
   }
   
   override func viewDidAppear(_ animated: Bool) {
@@ -292,15 +292,15 @@ class MagnificationViewController: UIViewController {
       viewImageVC.saved = PHPhotoLibrary.authorizationStatus() == .authorized
     }
     
-    if let proOfferVC = segue.destination as? ProOfferViewController {
-      proOfferVC.product = subscriptionManager.products.last
-      proOfferVC.album = album
-    }
+//    if let proOfferVC = segue.destination as? ProOfferViewController {
+//      proOfferVC.product = subscriptionManager.products.last
+//      proOfferVC.album = album
+//    }
   }
   
   deinit {
     NotificationCenter.default.removeObserver(self)
-    SKPaymentQueue.default().remove(self)
+//    SKPaymentQueue.default().remove(self)
   }
 }
 
