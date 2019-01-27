@@ -89,10 +89,8 @@ class MessagesViewController: MSMessagesAppViewController {
     // Use this method to finalize any behaviors associated with the change in presentation style.
     let temp_layer = self.view.layer
     previewLayer?.frame = temp_layer.bounds
-    trackingView?.frame = CGRect(x:  view.center.x, y: view.center.y-20, width: 80, height: 80)
-    rectOutline = trackingView?.frame
-    trackingView?.layoutIfNeeded()
     previewLayer?.layoutIfNeeded()
+    setTrackingView(for: presentationStyle)
   }
   
 }

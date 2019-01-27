@@ -60,6 +60,7 @@ extension MessagesViewController {
         for temp in self.view.subviews {
           //if temp == self.backgroundMagImage { continue }
           self.view.bringSubviewToFront(temp) }
+        self.setTrackingView(for: .compact)
       }
       
       guard !captureSession.isRunning else { return }
