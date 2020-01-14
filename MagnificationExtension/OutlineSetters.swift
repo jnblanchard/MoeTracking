@@ -13,7 +13,7 @@ import Messages
 extension MessagesViewController {
   func setTrackingView(for state: MSMessagesAppPresentationStyle) {
     
-    var rect: CGRect = CGRect(x: view.center.x-40, y: view.center.y-40, width: 80, height: 80)
+    let rect: CGRect = CGRect(x: view.center.x-40, y: view.center.y-40, width: 80, height: 80)
     
     switch state {
     case .compact:
@@ -21,6 +21,8 @@ extension MessagesViewController {
     case .expanded:
       break;
     case .transcript:
+      break;
+    @unknown default:
       break;
     }
     

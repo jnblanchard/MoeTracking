@@ -375,6 +375,7 @@
 				TargetAttributes = {
 					043A302421BAE52C009571EE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -383,14 +384,17 @@
 					};
 					043A303821BAE52F009571EE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 						TestTargetID = 043A302421BAE52C009571EE;
 					};
 					043A304321BAE530009571EE = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 						TestTargetID = 043A302421BAE52C009571EE;
 					};
 					04D920AC21FB722000519422 = {
 						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1130;
 					};
 				};
 			};
@@ -687,7 +691,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBamba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -709,7 +713,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBamba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -729,7 +733,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBambaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoeBamba.app/MoeBamba";
 			};
@@ -750,7 +754,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBambaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MoeBamba.app/MoeBamba";
 			};
@@ -770,7 +774,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBambaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MoeBamba;
 			};
@@ -790,7 +794,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBambaUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = MoeBamba;
 			};
@@ -812,7 +816,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBamba.MagnificationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -833,7 +837,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = RBII.MoeBamba.MagnificationExtension;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;

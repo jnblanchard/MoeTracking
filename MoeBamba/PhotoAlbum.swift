@@ -8,6 +8,7 @@
 
 import Foundation
 import Photos
+import UIKit
 
 extension UIViewController {
   func fetchImage(asset: PHAsset, completion: @escaping  (UIImage) -> ()) {

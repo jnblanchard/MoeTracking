@@ -91,6 +91,8 @@ extension MessagesViewController {
     case .restricted:
       // Continue with restriction
       noCameraSettingsScreen()
+    @unknown default:
+      noCameraSettingsScreen()
     }
   }
   

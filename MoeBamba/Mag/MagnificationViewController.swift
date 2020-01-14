@@ -201,6 +201,8 @@ class MagnificationViewController: UIViewController {
       adjust()
     case .possible:
       break
+    @unknown default:
+      break
     }
   }
   
