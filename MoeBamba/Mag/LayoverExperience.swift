@@ -11,6 +11,7 @@ import StoreKit
 extension MagnificationViewController {
   
   var trackingView: TrackingView? {
+    
     for aView in view.subviews {
       if aView is TrackingView {
         return aView as? TrackingView
@@ -21,6 +22,7 @@ extension MagnificationViewController {
     temp.layer.borderWidth = 3.0
     view.addSubview(temp)
     return temp
+    
   }
   
   func showNoCameraCover() {
@@ -70,14 +72,44 @@ extension MagnificationViewController {
     return coverView
   }
   
+  func createTrackerResizing() {
+    let trackerHelper = UILabel()
+    trackerHelper.text = "   Drag camera preview to create your own magnified area.    "
+    trackerHelper.numberOfLines = 3
+    trackerHelper.textColor = UIColor.white
+    trackerHelper.textAlignment = .center
+    trackerHelper.font = UIFont.systemFont(ofSize: 19, weight: .semibold)
+    trackerHelper.layoutMargins = UIEdgeInsets(top: 10, left: 15, bottom: 10, right: 15)
+    trackerHelper.backgroundColor = UIColor(displayP3Red: 0, green: 0, blue: 0, alpha: 0.5)
+    trackerHelper.translatesAutoresizingMaskIntoConstraints = false
+    trackerHelper.layer.borderColor = UIColor.white.cgColor
+    trackerHelper.layer.borderWidth = 2.0
+    view.addSubview(trackerHelper)
+    trackerHelper.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
+    trackerHelper.bottomAnchor.constraint(equalTo: trackingView!.topAnchor, constant: -7.5).isActive = true
+    trackerHelper.widthAnchor.constraint(equalTo: view.widthAnchor, constant: -50).isActive = true
+    trackerHelper.heightAnchor.constraint(equalToConstant: 55).isActive = true
+  }
+  
   func setFirstTimeLayovers() {
-    let _ = createPreviewCoverView(with: "Tap to capture.", defaultSize: 110)
+    let _ = createPreviewCoverView(with: "Tap to capture", defaultSize: 110)
+    createTrackerResizing()
+//    previewImageView.bringSubviewToFront(tapPreview)
   }
   
   func removeCaptureLayover() {
+    
+    let removalViews = view.subviews.filter { (aView) -> Bool in
+      guard let temp = aView as? UILabel else { return false }
+      return temp.text == "Tap to capture" || temp.text == "   Drag camera preview to create your own magnified area.    "
+    }
+    removalViews.forEach { (aView) in
+      aView.removeFromSuperview()
+    }
+    
     guard let cover = previewImageView.subviews.first(where: { (aView) -> Bool in
       guard let temp = aView as? UILabel else { return false }
-      return temp.text == "Tap to capture."
+      return temp.text == "Tap to capture" || temp.text == "   Drag camera preview to create your own magnified area.    "
     }) else { return }
     cover.removeFromSuperview()
   }
@@ -85,7 +117,7 @@ extension MagnificationViewController {
   func requestReviewFor(attempt multiple: Int) {
     let launches = UserDefaults.standard.integer(forKey: "launches")
     guard launches > 1 && !testLayovers else {
-      guard launches == 1 || testLayovers else { return }
+      guard album.count() < 1 || testLayovers else { return }
       setFirstTimeLayovers()
       return
     }

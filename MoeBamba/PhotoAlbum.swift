@@ -39,15 +39,19 @@ class CustomPhotoAlbum: NSObject {
     }
     
     if PHPhotoLibrary.authorizationStatus() != PHAuthorizationStatus.authorized {
-      PHPhotoLibrary.requestAuthorization({ (status: PHAuthorizationStatus) -> Void in
-        ()
-      })
+      PHPhotoLibrary.requestAuthorization { (status) in
+        guard status == .authorized else { return }
+        self.createAlbum()
+      }
     }
     
     if PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized {
       self.createAlbum()
     } else {
-      //PHPhotoLibrary.requestAuthorization(requestAuthorizationHandler)
+      PHPhotoLibrary.requestAuthorization { (status) in
+        guard status == .authorized else { return }
+        self.createAlbum()
+      }
     }
   }
   
@@ -107,7 +111,7 @@ class CustomPhotoAlbum: NSObject {
   
   func save(image: UIImage) {
     guard PHPhotoLibrary.authorizationStatus() == PHAuthorizationStatus.authorized else {
-      //requestAuth(completion: save(image: image))
+      requestAuth(completion: save(image: image))
       return
     }
     if assetCollection == nil {

@@ -91,6 +91,7 @@ class MagnificationViewController: UIViewController {
     super.viewDidAppear(animated)
     detailLayout()
     start()
+    requestReviewFor(attempt: UserDefaults.standard.integer(forKey: "launches"))
   }
   
   @IBAction func focusTap(_ tap: UITapGestureRecognizer) {
